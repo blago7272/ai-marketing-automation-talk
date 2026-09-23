@@ -1,0 +1,1406 @@
+{
+  "meta": {
+    "title": "Building Smarter and Scalable Marketing Automation with AI",
+    "subtitle": "Connecting marketing data, analytics and custom software",
+    "speaker": "Blagovest Iordanov",
+    "version": "1.1.0"
+  },
+  "settings": {
+    "desktopMinWidth": 900,
+    "defaultBackground": "hero",
+    "startSlide": 0
+  },
+  "slides": [
+    {
+      "id": "welcome",
+      "type": "title",
+      "background": "hero",
+      "title": "Smarter,\nScalable\nMarketing\nAutomation\nwith AI",
+      "body": "How to connect marketing data, analytics and custom software into automation that grows with the business, shown through two real projects.",
+      "workflow": [
+        {
+          "title": "Data",
+          "body": "Exports, APIs, connectors",
+          "icon": "doc"
+        },
+        {
+          "title": "Code",
+          "body": "Repos + an AI agent",
+          "icon": "code"
+        },
+        {
+          "title": "Cloud",
+          "body": "Scheduled jobs",
+          "icon": "rocket"
+        },
+        {
+          "title": "Verify",
+          "body": "Tests and reconciliation",
+          "icon": "check"
+        },
+        {
+          "title": "Reuse",
+          "body": "Knowledge and tools",
+          "icon": "bot"
+        }
+      ]
+    },
+    {
+      "id": "about-me",
+      "type": "about",
+      "background": "focus",
+      "title": "About me",
+      "name": "Blagovest Iordanov",
+      "role": "Co-founder of ID Consult. I focus on data strategy, analytics infrastructure and technical implementation.",
+      "linkedin": {
+        "label": "idconsult.bg",
+        "href": "https://idconsult.bg"
+      },
+      "bullets": [
+        {
+          "title": "What I do",
+          "points": [
+            "Digital marketing agency with clients in Bulgaria, the EU and the US",
+            "eCommerce, financial services, B2B and B2C",
+            "Tracking, server-side tagging, GA4, reporting pipelines",
+            "This past year: AI agents that write and maintain the code for me"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "problem",
+      "type": "compose",
+      "background": "calm",
+      "layout": "stack",
+      "title": "The problem",
+      "blocks": [
+        {
+          "id": "problem-title",
+          "type": "heading",
+          "text": "Automation that doesn't grow"
+        },
+        {
+          "id": "problem-lead",
+          "type": "text",
+          "paragraphs": [
+            "Most marketing automation starts well and breaks once there are more clients, more accounts and more questions."
+          ]
+        },
+        {
+          "id": "problem-cards",
+          "type": "cards",
+          "columns": 3,
+          "cards": [
+            {
+              "label": "Spreadsheets",
+              "title": "A report in Google Sheets",
+              "body": "356,000 rows of Ads data in one sheet, with formulas nobody dares to touch.",
+              "id": "problem-cards-1",
+              "reveal": "collapse"
+            },
+            {
+              "label": "Scenarios",
+              "title": "Zap after Zap",
+              "body": "A separate scenario for every client. No change history, no tests, and nobody writes down what was decided.",
+              "id": "problem-cards-2",
+              "reveal": "collapse"
+            },
+            {
+              "label": "Prompts",
+              "title": "One-off chats",
+              "body": "The AI answers well once. Next month the context is explained from scratch.",
+              "id": "problem-cards-3",
+              "reveal": "collapse"
+            }
+          ]
+        },
+        {
+          "id": "problem-callout",
+          "type": "callout",
+          "reveal": "collapse",
+          "label": "Today's question",
+          "title": "How can AI build systems, not just answers?",
+          "body": "So that each new client costs less than the last one."
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "Spreadsheet as a database",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "problem-cards-1"
+            }
+          ]
+        },
+        {
+          "caption": "Scenarios without memory",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "problem-cards-2"
+            }
+          ]
+        },
+        {
+          "caption": "Chats without memory",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "problem-cards-3"
+            }
+          ]
+        },
+        {
+          "caption": "The core question",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "problem-callout"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "agenda",
+      "type": "agenda",
+      "background": "calm",
+      "title": "Agenda",
+      "body": "Two real projects, one infrastructure decision and one framework for reuse.",
+      "items": [
+        {
+          "title": "Why I work in code repositories",
+          "body": "The repo is the project's memory, for me and for the AI agent.",
+          "id": "agenda-item-1",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Project 1: Google Ads exporter",
+          "body": "One shared model for 90+ ad accounts on BigQuery and dbt, plus a cost cut from $449 to $15 a month.",
+          "id": "agenda-item-2",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Cloud or workflow platform",
+          "body": "When I pick Cloud Run and BigQuery, and when Make or n8n.",
+          "id": "agenda-item-3",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Project 2: healthcare client reporting",
+          "body": "Shopify, WooCommerce, Google Ads and GA4 in a protected dashboard in 2 days. Where exports, APIs and MCP fit.",
+          "id": "agenda-item-4",
+          "reveal": "collapse"
+        },
+        {
+          "title": "A framework for reuse",
+          "body": "How to organise knowledge, tools and business cases.",
+          "id": "agenda-item-5",
+          "reveal": "collapse"
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "agenda-item-1",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "agenda-item-1"
+            }
+          ]
+        },
+        {
+          "caption": "agenda-item-2",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "agenda-item-2"
+            }
+          ]
+        },
+        {
+          "caption": "agenda-item-3",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "agenda-item-3"
+            }
+          ]
+        },
+        {
+          "caption": "agenda-item-4",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "agenda-item-4"
+            }
+          ]
+        },
+        {
+          "caption": "agenda-item-5",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "agenda-item-5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "why-repos",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Why code repositories",
+      "blocks": [
+        {
+          "id": "why-repos-title",
+          "type": "heading",
+          "text": "Why I work in code repositories"
+        },
+        {
+          "id": "why-repos-lead",
+          "type": "text",
+          "paragraphs": [
+            "I don't write the code by hand. I write the tasks, decisions and rules. An AI agent (Codex, Claude Code) implements them in the repo, and Git keeps everything."
+          ]
+        },
+        {
+          "id": "why-repos-cards",
+          "type": "cards",
+          "columns": 4,
+          "cards": [
+            {
+              "number": "01",
+              "title": "History",
+              "body": "Every change is a commit with a reason. The exporter has 74, and each one says why, not just what.",
+              "id": "why-repos-cards-1",
+              "reveal": "collapse"
+            },
+            {
+              "number": "02",
+              "title": "Memory",
+              "body": "AGENTS.md, contracts and decisions in docs/. The agent reads them before every task and doesn't repeat old mistakes.",
+              "id": "why-repos-cards-2",
+              "reveal": "collapse"
+            },
+            {
+              "number": "03",
+              "title": "Tests",
+              "body": "155 dbt tests in the exporter, 38 unit tests in the client project. Bad data never reaches the client.",
+              "id": "why-repos-cards-3",
+              "reveal": "collapse"
+            },
+            {
+              "number": "04",
+              "title": "Reuse",
+              "body": "A new project reads older repos as references but never changes them.",
+              "id": "why-repos-cards-4",
+              "reveal": "collapse"
+            }
+          ]
+        },
+        {
+          "id": "why-repos-quote",
+          "type": "quote",
+          "reveal": "collapse",
+          "text": "Read docs/CONTRACTS.md as durable project memory.",
+          "source": "AGENTS.md, healthcare client project"
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "History",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "why-repos-cards-1"
+            }
+          ]
+        },
+        {
+          "caption": "Memory",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "why-repos-cards-2"
+            }
+          ]
+        },
+        {
+          "caption": "Tests",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "why-repos-cards-3"
+            }
+          ]
+        },
+        {
+          "caption": "Reuse",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "why-repos-cards-4"
+            }
+          ]
+        },
+        {
+          "caption": "A rule from AGENTS.md",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "why-repos-quote"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-gads",
+      "type": "text",
+      "background": "calm",
+      "title": "Project 1: Google Ads exporter",
+      "paragraphs": [
+        "gads-export-all: one shared reporting model for all of the agency's clients."
+      ]
+    },
+    {
+      "id": "gads-use-case",
+      "type": "use-case",
+      "background": "focus",
+      "title": "Google Ads exporter",
+      "body": "Goal: one reporting layer, not a separate sheet for every client.",
+      "items": [
+        {
+          "label": "Team",
+          "title": "The agency",
+          "body": "PPC managers who watch dozens of accounts every day.",
+          "id": "gads-uc-1",
+          "reveal": "collapse"
+        },
+        {
+          "label": "Input",
+          "title": "Google Ads Data Transfer",
+          "body": "Raw export into BigQuery, 94 accounts in config, in several currencies (EUR, BGN, USD, GBP, RON, MXN).",
+          "id": "gads-uc-2",
+          "reveal": "collapse"
+        },
+        {
+          "label": "Output",
+          "title": "Reports and alerts",
+          "body": "Management hub, keyword and search term audits, budget pacing, alerts and a daily Telegram summary.",
+          "id": "gads-uc-3",
+          "reveal": "collapse"
+        },
+        {
+          "label": "Rule",
+          "title": "Raw data stays untouched",
+          "body": "Settings live in config tables, logic in SQL marts, and the app only filters and displays.",
+          "id": "gads-uc-4",
+          "reveal": "collapse"
+        }
+      ],
+      "successLabel": "What we learned",
+      "successId": "gads-uc-outcome",
+      "successReveal": "collapse",
+      "success": "Differences between clients live in configuration, not in copies of the code.",
+      "revealSteps": [
+        {
+          "caption": "gads-uc-1",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "gads-uc-1"
+            }
+          ]
+        },
+        {
+          "caption": "gads-uc-2",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "gads-uc-2"
+            }
+          ]
+        },
+        {
+          "caption": "gads-uc-3",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "gads-uc-3"
+            }
+          ]
+        },
+        {
+          "caption": "gads-uc-4",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "gads-uc-4"
+            }
+          ]
+        },
+        {
+          "caption": "gads-uc-outcome",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "gads-uc-outcome"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gads-architecture",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Architecture",
+      "blocks": [
+        {
+          "id": "arch-title",
+          "type": "heading",
+          "text": "Layers instead of scenarios"
+        },
+        {
+          "id": "arch-timeline",
+          "type": "timeline",
+          "items": [
+            {
+              "label": "raw",
+              "title": "gads_raw",
+              "body": "Google Ads DTS export. Read-only."
+            },
+            {
+              "label": "cfg",
+              "title": "Configuration",
+              "body": "Accounts, thresholds, groups, ECB exchange rates."
+            },
+            {
+              "label": "stg",
+              "title": "Standardisation",
+              "body": "17 staging models that normalise the sources."
+            },
+            {
+              "label": "mart",
+              "title": "Reporting logic",
+              "body": "17 marts, each with client_id, account_id and report_date."
+            },
+            {
+              "label": "app",
+              "title": "Delivery",
+              "body": "FastAPI reports with Google login, plus a Telegram bot."
+            }
+          ]
+        },
+        {
+          "id": "arch-orchestrator",
+          "type": "callout",
+          "reveal": "collapse",
+          "label": "Orchestration",
+          "title": "One Cloud Run job, triggered by Cloud Scheduler",
+          "body": "Freshness check → alert on dropped accounts → ECB rates → dbt build → dbt test → Telegram summary. Stops at the first failure."
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "The orchestrator",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "arch-orchestrator"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cloud-vs-workflow",
+      "type": "comparison",
+      "background": "dense",
+      "title": "Cloud or workflow platform",
+      "body": "It isn't either-or. The question is how much data there is, how often the rules change, and who will maintain it.",
+      "columns": [
+        {
+          "label": "Make / n8n / Zapier",
+          "title": "Workflow platform",
+          "variant": "before",
+          "items": [
+            "Little data, event → action (lead → CRM → Slack)",
+            "Business users can change the steps themselves",
+            "A prototype in hours",
+            "Limits on operations and run time",
+            "Hard to test, hard to diff versions"
+          ]
+        },
+        {
+          "label": "Cloud Run + BigQuery + dbt",
+          "title": "Cloud infrastructure",
+          "variant": "after",
+          "items": [
+            "Hundreds of thousands of rows a day, years of history",
+            "Rules that must be verified (currencies, attribution, ROAS)",
+            "Tests, staging, rollback to a previous image",
+            "Cost measured in GB, not in task counts",
+            "The AI agent writes the code, so \"hard to maintain\" is no longer an argument"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "demo-cost",
+      "type": "ai-demo",
+      "background": "focus",
+      "title": "Demo: BigQuery costs from $449 to $15",
+      "body": "How the AI agent finds where the money goes, measures it, and proves nothing is lost.",
+      "transcript": "data/transcripts/gads-cost-optimization.json"
+    },
+    {
+      "id": "gads-impact",
+      "type": "impact",
+      "background": "focus",
+      "title": "Result",
+      "body": "Measured in billed bytes from INFORMATION_SCHEMA.JOBS, not estimated.",
+      "metrics": [
+        {
+          "value": "$449 → $15",
+          "label": "monthly build cost"
+        },
+        {
+          "value": "−97%",
+          "label": "GB processed per day"
+        },
+        {
+          "value": "0",
+          "label": "account/date pairs lost in the A/B check"
+        },
+        {
+          "value": "13 days",
+          "label": "hidden gap in ECB rates, found by a new test"
+        }
+      ],
+      "points": [
+        "The optimisation surfaced an old bug. A new coverage test showed the ECB feed had stopped for 13 days, leaving USD/GBP accounts with an empty cost_eur.",
+        "Rejected ideas are also written down in the repo, with the reason."
+      ]
+    },
+    {
+      "id": "section-client",
+      "type": "text",
+      "background": "calm",
+      "title": "Project 2: Client from the healthcare industry",
+      "paragraphs": [
+        "Building on top: client reporting on the exporter, in two days."
+      ]
+    },
+    {
+      "id": "client-use-case",
+      "type": "use-case",
+      "background": "focus",
+      "title": "Healthcare client reporting",
+      "body": "The ask: replace a manual spreadsheet with a daily dashboard by country, campaign and year over year.",
+      "items": [
+        {
+          "label": "Client",
+          "title": "EU eCommerce, healthcare",
+          "body": "Migrated from WooCommerce to Shopify, with two Google Ads accounts (an old BGN one and a new EUR one).",
+          "id": "client-uc-1",
+          "reveal": "collapse"
+        },
+        {
+          "label": "Input",
+          "title": "5 sources",
+          "body": "Shopify API, Woo order history in Sheets, Google Ads export, GA4 BigQuery export and ECB rates.",
+          "id": "client-uc-2",
+          "reveal": "collapse"
+        },
+        {
+          "label": "Output",
+          "title": "Protected dashboard",
+          "body": "Business ROAS by country, Ads by country → campaign → month, campaigns with YoY. Google login access.",
+          "id": "client-uc-3",
+          "reveal": "collapse"
+        },
+        {
+          "label": "Foundation",
+          "title": "Reused parts",
+          "body": "Ads marts from the exporter, Shopify extractor patterns, the UI hub from another client.",
+          "id": "client-uc-4",
+          "reveal": "collapse"
+        }
+      ],
+      "successLabel": "What we learned",
+      "successId": "client-uc-outcome",
+      "successReveal": "collapse",
+      "success": "The second project was cheap because the first one left behind tools and documented decisions.",
+      "revealSteps": [
+        {
+          "caption": "client-uc-1",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "client-uc-1"
+            }
+          ]
+        },
+        {
+          "caption": "client-uc-2",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "client-uc-2"
+            }
+          ]
+        },
+        {
+          "caption": "client-uc-3",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "client-uc-3"
+            }
+          ]
+        },
+        {
+          "caption": "client-uc-4",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "client-uc-4"
+            }
+          ]
+        },
+        {
+          "caption": "client-uc-outcome",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "client-uc-outcome"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client-timeline",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Two days, 19 commits",
+      "blocks": [
+        {
+          "id": "client-tl-title",
+          "type": "heading",
+          "text": "Two days, 19 commits"
+        },
+        {
+          "id": "client-tl",
+          "type": "timeline",
+          "items": [
+            {
+              "label": "Day 1 · 11:50",
+              "title": "Discovery",
+              "body": "Sources checked, gaps listed, 8 questions for me before any code."
+            },
+            {
+              "label": "12:43",
+              "title": "Shopify pipeline",
+              "body": "4,894 orders, daily refresh, 72-hour overlap."
+            },
+            {
+              "label": "13:38",
+              "title": "Dashboard",
+              "body": "Cloud Run, IAP, custom domain and spreadsheet history."
+            },
+            {
+              "label": "Day 2 · 09:15",
+              "title": "MCP supplement",
+              "body": "Countries for Performance Max via the Google Ads MCP."
+            },
+            {
+              "label": "10:06",
+              "title": "Contracts",
+              "body": "The final legacy export becomes canonical and is recorded in CONTRACTS.md."
+            }
+          ]
+        },
+        {
+          "id": "client-tl-note",
+          "type": "callout",
+          "reveal": "collapse",
+          "label": "Key point",
+          "title": "The first commit is a document, not code",
+          "body": "The discovery report lists what was checked, what wasn't, and which decisions belong to a human."
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "The first commit",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "client-tl-note"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "demo-client",
+      "type": "ai-demo",
+      "background": "focus",
+      "title": "Demo: when the numbers don't match",
+      "body": "Discovery, decisions, then a finding: the shared export has no countries for Performance Max.",
+      "transcript": "data/transcripts/client-reporting.json"
+    },
+    {
+      "id": "data-map",
+      "type": "tool-map",
+      "background": "focus",
+      "title": "Exports, APIs and AI connectors",
+      "body": "Each source comes in through the most stable channel available. Everything meets in BigQuery.",
+      "center": {
+        "label": "Warehouse",
+        "title": "BigQuery",
+        "body": "raw → core → mart, with provenance on every row"
+      },
+      "nodes": [
+        {
+          "label": "Data export",
+          "title": "Google Ads DTS",
+          "body": "Daily export of all accounts. Cheap and stable."
+        },
+        {
+          "label": "Data export",
+          "title": "GA4 → BigQuery",
+          "body": "Row-level events, no API limits."
+        },
+        {
+          "label": "API",
+          "title": "Shopify GraphQL",
+          "body": "Orders, refunds, country. The token is renewed every day."
+        },
+        {
+          "label": "MCP",
+          "title": "Google Ads MCP",
+          "body": "Fills the gap the export can't cover (PMax by country)."
+        },
+        {
+          "label": "File",
+          "title": "Legacy CSV / Sheets",
+          "body": "One-off import with SHA-256 and row numbers."
+        },
+        {
+          "label": "API",
+          "title": "ECB rates",
+          "body": "Daily rates, carried forward up to 30 days during outages."
+        }
+      ]
+    },
+    {
+      "id": "exports-vs-mcp",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "When exports, when MCP",
+      "blocks": [
+        {
+          "id": "evm-title",
+          "type": "heading",
+          "text": "Exports are the foundation, MCP is the instrument"
+        },
+        {
+          "id": "evm-cards",
+          "type": "cards",
+          "columns": 3,
+          "cards": [
+            {
+              "label": "Data export",
+              "title": "For volume and history",
+              "body": "Every day, every account, no human in the loop. The base of every report.",
+              "id": "evm-cards-1",
+              "reveal": "collapse"
+            },
+            {
+              "label": "AI connector (MCP)",
+              "title": "For exploration and gaps",
+              "body": "The agent queries the live API, compares and proves. That's how we found 291 days of cost mismatch.",
+              "id": "evm-cards-2",
+              "reveal": "collapse"
+            },
+            {
+              "label": "MCP in production",
+              "title": "Only under contract",
+              "body": "Fixed account, row cap, reconciliation to the cent, and temporary status until the export is fixed.",
+              "id": "evm-cards-3",
+              "reveal": "collapse"
+            }
+          ]
+        },
+        {
+          "id": "evm-callout",
+          "type": "callout",
+          "reveal": "collapse",
+          "label": "Rule",
+          "title": "A connector doesn't replace the warehouse",
+          "body": "MCP responses are saved as artifacts with provenance and loaded through the same checks as any other source."
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "evm-cards-1",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "evm-cards-1"
+            }
+          ]
+        },
+        {
+          "caption": "evm-cards-2",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "evm-cards-2"
+            }
+          ]
+        },
+        {
+          "caption": "evm-cards-3",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "evm-cards-3"
+            }
+          ]
+        },
+        {
+          "caption": "evm-callout",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "evm-callout"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "artifacts",
+      "type": "artifact-gallery",
+      "background": "dense",
+      "title": "Artifacts in the repo",
+      "body": "What stays after the chat. Shortened, anonymised excerpts from the real files.",
+      "artifacts": [
+        {
+          "title": "AGENTS.md",
+          "type": "Markdown",
+          "path": "assets/attachments/client-agents.md",
+          "body": "The rules the agent follows on every task.",
+          "meta": "Project memory",
+          "id": "art-1",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Discovery report",
+          "type": "Markdown",
+          "path": "assets/attachments/client-discovery-excerpt.md",
+          "body": "Gaps, risks and questions for a human.",
+          "meta": "Before the code",
+          "id": "art-2",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Ads cost reconciliation",
+          "type": "Markdown",
+          "path": "assets/attachments/client-mcp-reconciliation.md",
+          "body": "Why DTS and the API report different cost for the same campaign.",
+          "meta": "Evidence",
+          "id": "art-3",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Cost optimisation",
+          "type": "Markdown",
+          "path": "assets/attachments/gads-cost-optimizations.md",
+          "body": "4 changes, measured in GB and dollars.",
+          "meta": "Exporter",
+          "id": "art-4",
+          "reveal": "collapse"
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "art-1",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "art-1"
+            }
+          ]
+        },
+        {
+          "caption": "art-2",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "art-2"
+            }
+          ]
+        },
+        {
+          "caption": "art-3",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "art-3"
+            }
+          ]
+        },
+        {
+          "caption": "art-4",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "art-4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verification",
+      "type": "verification",
+      "background": "calm",
+      "title": "The trust boundary",
+      "body": "AI prepares, executes and verifies. A human decides what the data means for the business.",
+      "boundary": "AI builds and proves; the human sets the rules",
+      "ai": {
+        "label": "The AI agent does",
+        "items": [
+          "Discovery of sources, schemas and gaps",
+          "Pipelines, tests, cloud deployment",
+          "Reconciliation to the cent and A/B checks",
+          "Documents every decision in the repo"
+        ]
+      },
+      "human": {
+        "label": "The human decides",
+        "items": [
+          "What \"revenue\" means (net, total, refunds)",
+          "The migration date and which source takes precedence",
+          "Who gets access to the client's data",
+          "Whether to trade a safety stage for a 50% lower bill"
+        ]
+      }
+    },
+    {
+      "id": "findings",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Findings",
+      "blocks": [
+        {
+          "id": "findings-title",
+          "type": "heading",
+          "text": "Six things I learned"
+        },
+        {
+          "id": "find",
+          "type": "cards",
+          "columns": 3,
+          "cards": [
+            {
+              "number": "01",
+              "title": "Missing is not zero",
+              "body": "An empty day in the data is a gap to investigate, not zero spend.",
+              "id": "find-1",
+              "reveal": "collapse"
+            },
+            {
+              "number": "02",
+              "title": "IDs, not names",
+              "body": "Campaigns get renamed. The key is account + campaign ID; the name is just a label.",
+              "id": "find-2",
+              "reveal": "collapse"
+            },
+            {
+              "number": "03",
+              "title": "Contracts are memory",
+              "body": "A decision that isn't written down will be \"fixed\" by the next agent.",
+              "id": "find-3",
+              "reveal": "collapse"
+            },
+            {
+              "number": "04",
+              "title": "Measure in bytes",
+              "body": "One view, joined by 10 marts, was 70% of the bill.",
+              "id": "find-4",
+              "reveal": "collapse"
+            },
+            {
+              "number": "05",
+              "title": "Check before publishing",
+              "body": "If a run fails, the client sees the last good data, not broken data.",
+              "id": "find-5",
+              "reveal": "collapse"
+            },
+            {
+              "number": "06",
+              "title": "References are read-only",
+              "body": "A new project copies patterns and never touches working systems.",
+              "id": "find-6",
+              "reveal": "collapse"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "find-1",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "find-1"
+            }
+          ]
+        },
+        {
+          "caption": "find-2",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "find-2"
+            }
+          ]
+        },
+        {
+          "caption": "find-3",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "find-3"
+            }
+          ]
+        },
+        {
+          "caption": "find-4",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "find-4"
+            }
+          ]
+        },
+        {
+          "caption": "find-5",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "find-5"
+            }
+          ]
+        },
+        {
+          "caption": "find-6",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "find-6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-framework",
+      "type": "text",
+      "background": "calm",
+      "title": "Framework",
+      "paragraphs": [
+        "How projects become reusable solutions without losing each business's specifics."
+      ]
+    },
+    {
+      "id": "framework",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Four layers",
+      "blocks": [
+        {
+          "id": "fw-title",
+          "type": "heading",
+          "text": "Four layers"
+        },
+        {
+          "id": "fw",
+          "type": "cards",
+          "columns": 4,
+          "cards": [
+            {
+              "label": "Knowledge",
+              "title": "What we know",
+              "body": "AGENTS.md, CONTRACTS.md, discovery, recorded decisions and rejected ideas. The agent reads them on every task.",
+              "id": "fw-1",
+              "reveal": "collapse"
+            },
+            {
+              "label": "Tools",
+              "title": "What we work with",
+              "body": "Exporters, dbt models, the FX pipeline, MCP clients, deploy scripts. One repo, many clients.",
+              "id": "fw-2",
+              "reveal": "collapse"
+            },
+            {
+              "label": "Business cases",
+              "title": "What we solve",
+              "body": "A separate repo for each client case. References are read, not blindly copied.",
+              "id": "fw-3",
+              "reveal": "collapse"
+            },
+            {
+              "label": "Specifics",
+              "title": "What's different",
+              "body": "Config tables, revenue definition, migration boundary, access list. Decided with the client.",
+              "id": "fw-4",
+              "reveal": "collapse"
+            }
+          ]
+        },
+        {
+          "id": "fw-callout",
+          "type": "callout",
+          "reveal": "collapse",
+          "label": "The effect",
+          "title": "Each new client costs less than the last",
+          "body": "The exporter took months to build. The healthcare client project, built on top of it, took two days."
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "fw-1",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "fw-1"
+            }
+          ]
+        },
+        {
+          "caption": "fw-2",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "fw-2"
+            }
+          ]
+        },
+        {
+          "caption": "fw-3",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "fw-3"
+            }
+          ]
+        },
+        {
+          "caption": "fw-4",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "fw-4"
+            }
+          ]
+        },
+        {
+          "caption": "fw-callout",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "fw-callout"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "playbook",
+      "type": "playbook",
+      "background": "focus",
+      "title": "Playbook",
+      "body": "The same order for every new client.",
+      "steps": [
+        {
+          "title": "Discovery",
+          "body": "The agent checks the sources and records what is proven and what isn't.",
+          "id": "pb-1",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Decisions",
+          "body": "A human answers the open questions, and the answers become a contract in the repo.",
+          "id": "pb-2",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Build on the shared layer",
+          "body": "Specifics go into config; the shared layer stays untouched.",
+          "id": "pb-3",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Prove it",
+          "body": "Tests, reconciliation and A/B checks against the old source.",
+          "id": "pb-4",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Schedule it",
+          "body": "A Cloud Run job and Scheduler, publishing only if the checks pass.",
+          "id": "pb-5",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Extract",
+          "body": "Anything that repeats goes back into the tools and the knowledge.",
+          "id": "pb-6",
+          "reveal": "collapse"
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "pb-1",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "pb-1"
+            }
+          ]
+        },
+        {
+          "caption": "pb-2",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "pb-2"
+            }
+          ]
+        },
+        {
+          "caption": "pb-3",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "pb-3"
+            }
+          ]
+        },
+        {
+          "caption": "pb-4",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "pb-4"
+            }
+          ]
+        },
+        {
+          "caption": "pb-5",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "pb-5"
+            }
+          ]
+        },
+        {
+          "caption": "pb-6",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "pb-6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "type": "compose",
+      "background": "final",
+      "layout": "stack",
+      "title": "Start with one repo",
+      "blocks": [
+        {
+          "id": "final-title",
+          "type": "heading",
+          "text": "Start with one repo"
+        },
+        {
+          "id": "final-text",
+          "type": "text",
+          "paragraphs": [
+            "Pick one report you build by hand every month.",
+            "Create a repo with an AGENTS.md, and let the agent investigate first and build second."
+          ]
+        },
+        {
+          "id": "final-callout",
+          "type": "callout",
+          "reveal": "collapse",
+          "label": "This week",
+          "title": "One source, one test, one scheduled job.",
+          "body": "Then the next client already has something to build on."
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "final-callout",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "final-callout"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thank-you",
+      "type": "compose",
+      "background": "final",
+      "layout": "center",
+      "title": "Thank you",
+      "blocks": [
+        {
+          "id": "ty-title",
+          "type": "heading",
+          "text": "Thank you"
+        },
+        {
+          "id": "ty-text",
+          "type": "text",
+          "paragraphs": [
+            "Questions? Have a case you'd like to automate?"
+          ]
+        },
+        {
+          "id": "ty-credit",
+          "type": "text",
+          "paragraphs": [
+            "Presentation framework by Lyubomir Petrov (linkedin.com/in/lyubomirpetrov)."
+          ]
+        }
+      ]
+    }
+  ]
+}

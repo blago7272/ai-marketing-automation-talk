@@ -1,0 +1,350 @@
+{
+  "id": "gads-cost-optimization",
+  "title": "BigQuery costs: from $449 to $15 a month",
+  "assistantName": "Codex",
+  "context": "Condensed from many Codex sessions. The briefs are paraphrased; the steps, findings and numbers come from the repo's commits and docs.",
+  "metrics": [
+    {
+      "value": "339 → 82 GB",
+      "label": "per build"
+    },
+    {
+      "value": "2 → 1",
+      "label": "dbt targets a day"
+    },
+    {
+      "value": "203 → 155",
+      "label": "test queries"
+    },
+    {
+      "value": "0",
+      "label": "rows lost"
+    }
+  ],
+  "messages": [
+    {
+      "id": "c01_user",
+      "role": "user",
+      "name": "Brief",
+      "text": "Cut the BigQuery bill for the daily build. Raw data and report numbers must not change.",
+      "compact": {
+        "label": "Brief",
+        "title": "Find the cost",
+        "summary": "Cut the BigQuery bill for the daily build. Raw data and report numbers must not change."
+      }
+    },
+    {
+      "id": "c02_tool",
+      "role": "tool",
+      "name": "BigQuery",
+      "text": "Read billed bytes from INFORMATION_SCHEMA.JOBS_BY_PROJECT (region-eu) for a full dbt build.",
+      "compact": {
+        "label": "Measure",
+        "title": "INFORMATION_SCHEMA.JOBS",
+        "summary": "Billed bytes per model and per test.",
+        "items": [
+          "339 GB per build",
+          "× 2 targets: stage + prod",
+          "~$126 a month (down from $449 earlier)"
+        ]
+      }
+    },
+    {
+      "id": "c03_assistant",
+      "role": "assistant",
+      "name": "Codex",
+      "text": "One staging view is 70% of the bill.",
+      "compact": {
+        "title": "Where the money goes",
+        "summary": "One view, joined by 10 marts, reads 9 tables every time.",
+        "items": [
+          "stg_account_fx_rates_daily: 237 of 339 GB",
+          "5 not_null tests = the same view 5 times",
+          "Stage is a byte-for-byte copy of prod"
+        ]
+      },
+      "thinking": {
+        "title": "What it checked",
+        "status": "summary",
+        "summary": "Cost split by model and test, then compared with output size.",
+        "items": [
+          "Compared bytes read against rows produced.",
+          "Checked who read the stage datasets over 30 days."
+        ]
+      },
+      "contentBlocks": [
+        {
+          "type": "paragraph",
+          "text": "The exchange-rate model is a view. Ten marts join it, and each one re-runs a union distinct over nine fact views just to find the account/date pairs."
+        },
+        {
+          "type": "table",
+          "title": "Top costs in one build",
+          "columns": [
+            {
+              "key": "what",
+              "label": "What"
+            },
+            {
+              "key": "gb",
+              "label": "GB",
+              "align": "right"
+            },
+            {
+              "key": "note",
+              "label": "Note"
+            }
+          ],
+          "rows": [
+            {
+              "what": "stg_account_fx_rates_daily (as a view)",
+              "gb": "237",
+              "note": "Produces ~1 MB"
+            },
+            {
+              "what": "not_null tests on views",
+              "gb": "~75",
+              "note": "One query per test"
+            },
+            {
+              "what": "Stage target",
+              "gb": "×2",
+              "note": "3,780 reads in 30 days, all from dbt-runner"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "Proposal",
+          "text": "1) Make the FX model a table. 2) A dense date spine instead of the union. 3) One not_null_columns test per model. 4) Take stage off the daily path."
+        }
+      ],
+      "tooltip": {
+        "title": "Measure, don't guess",
+        "body": "The agent proves it with billed bytes, not intuition. 70% comes from one model.",
+        "placement": "left"
+      }
+    },
+    {
+      "id": "c04_user",
+      "role": "user",
+      "name": "Brief",
+      "text": "Before changing the model, prove no account/date pair is lost and no rate changes.",
+      "compact": {
+        "label": "Brief",
+        "title": "Prove it first",
+        "summary": "Before changing the model, prove no account/date pair is lost and no rate changes."
+      }
+    },
+    {
+      "id": "c05_tool",
+      "role": "tool",
+      "name": "dbt + BigQuery",
+      "text": "A/B comparison of the old union view and the new spine on identical inputs.",
+      "compact": {
+        "label": "Verify",
+        "title": "A/B and a new test",
+        "summary": "Old and new model on the same data.",
+        "items": [
+          "0 lost pairs",
+          "0 rate differences",
+          "Model build: 15.6 GB → 205 KiB",
+          "❌ covers_reported_dates: FAIL"
+        ]
+      }
+    },
+    {
+      "id": "c06_assistant",
+      "role": "assistant",
+      "name": "Codex",
+      "text": "The new test doesn't show a regression. It shows an old bug.",
+      "compact": {
+        "title": "Hidden bug",
+        "summary": "The ECB published nothing for 13 days, but the model only carried rates forward for 7.",
+        "items": [
+          "26 May → 7 June with no rates",
+          "USD/GBP/RON/MXN with empty cost_eur",
+          "The window becomes 30 days"
+        ]
+      },
+      "contentBlocks": [
+        {
+          "type": "paragraph",
+          "text": "The A/B check proves nothing was lost. But the coverage test fails: the ECB feed went dark for 13 days (26 May – 7 June 2026), longer than the 7-day carry-forward window."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Every USD, GBP, RON and MXN account had an empty cost_eur for 2–7 June.",
+            "fx_carry_forward_days becomes 30. That's safe: rn = 1 always picks the nearest earlier rate, so a wider window fills gaps without changing a rate already found."
+          ]
+        }
+      ],
+      "tooltip": {
+        "title": "The test that pays off",
+        "body": "The optimisation added a new test, and the test found a bug the reports had hidden for weeks.",
+        "placement": "left"
+      }
+    },
+    {
+      "id": "c07_assistant",
+      "role": "assistant",
+      "name": "Codex",
+      "text": "One change is a trade-off and needs a human decision.",
+      "compact": {
+        "title": "A decision for a human",
+        "summary": "Stage off the daily path = −50% on the bill, but no safety stage.",
+        "items": [
+          "prod_test is now the gate, after prod_build",
+          "Recovery: rerun the job",
+          "--include-stage when SQL changes"
+        ]
+      },
+      "contentBlocks": [
+        {
+          "type": "paragraph",
+          "text": "Stage validates code, and the daily refresh runs the same code on new data. Dropping stage saves 50%, but a bad build would overwrite prod and be caught right after, instead of being stopped."
+        },
+        {
+          "type": "callout",
+          "title": "Question",
+          "text": "Do you accept this trade-off? The repo has no CI yet, so --include-stage has to be run by hand when models change."
+        }
+      ]
+    },
+    {
+      "id": "c08_user",
+      "role": "user",
+      "name": "Brief",
+      "text": "Accepted. Record the trade-off and the rejected ideas in docs.",
+      "compact": {
+        "label": "Brief",
+        "title": "Decision",
+        "summary": "Accepted. Record the trade-off and the rejected ideas in docs."
+      }
+    },
+    {
+      "id": "c09_tool",
+      "role": "tool",
+      "name": "Git",
+      "text": "Commit: Cut the daily build from 679 GB to 82 GB",
+      "compact": {
+        "label": "Commit",
+        "title": "Cut the daily build from 679 GB to 82 GB",
+        "summary": "Code, tests and documentation in one commit.",
+        "items": [
+          "docs/pipeline_cost_optimizations.md",
+          "macros/test_not_null_columns.sql",
+          "Rejected: incremental marts, expiring raw partitions"
+        ]
+      },
+      "attachments": [
+        {
+          "title": "pipeline_cost_optimizations.md",
+          "type": "Doc",
+          "path": "assets/attachments/gads-cost-optimizations.md"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "caption": "The goal: find the cost without changing the numbers.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "c01_user"
+        }
+      ]
+    },
+    {
+      "caption": "The agent measures real billed bytes first.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "c02_tool"
+        }
+      ]
+    },
+    {
+      "caption": "Finding: one view is 70% of the bill.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "c03_assistant",
+          "showTooltip": true
+        }
+      ]
+    },
+    {
+      "caption": "The condition: proof before the change.",
+      "actions": [
+        {
+          "type": "clearTooltip"
+        },
+        {
+          "type": "appendMessage",
+          "messageId": "c04_user"
+        }
+      ]
+    },
+    {
+      "caption": "The A/B check passes, but the new test fails.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "c05_tool"
+        }
+      ]
+    },
+    {
+      "caption": "The test uncovers a 13-day gap in ECB rates.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "c06_assistant",
+          "showTooltip": true
+        }
+      ]
+    },
+    {
+      "caption": "The trade-off is a human decision.",
+      "actions": [
+        {
+          "type": "clearTooltip"
+        },
+        {
+          "type": "appendMessage",
+          "messageId": "c07_assistant"
+        }
+      ]
+    },
+    {
+      "caption": "The decision is recorded in the repo.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "c08_user"
+        }
+      ]
+    },
+    {
+      "caption": "One commit: code, tests and documentation.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "c09_tool"
+        }
+      ]
+    },
+    {
+      "caption": "Open the document.",
+      "actions": [
+        {
+          "type": "openArtifact",
+          "path": "assets/attachments/gads-cost-optimizations.md"
+        }
+      ]
+    }
+  ]
+}

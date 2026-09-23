@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scalable Marketing Automation</title>
+    <meta
+      name="description"
+      content="How marketers can use AI to build automation that grows with their needs."
+    />
+    <link rel="stylesheet" href="styles.css?v=20260706-07" />
+  </head>
+  <body>
+    <div class="desktop-required" role="dialog" aria-modal="true" aria-label="Desktop viewport required">
+      <div>
+        <strong>Desktop presentation viewport required</strong>
+        <span>Open this deck on a laptop, desktop display, or projector-sized browser window.</span>
+      </div>
+    </div>
+
+    <canvas id="webgl-background" aria-hidden="true"></canvas>
+    <div class="background-shade" aria-hidden="true"></div>
+
+    <main class="deck" id="deck" aria-live="polite">
+      <section class="slide is-active">
+        <div class="content-narrow">
+          <h1>Loading deck</h1>
+          <p>Preparing the AI presentation framework...</p>
+        </div>
+      </section>
+    </main>
+
+    <aside class="attachment-drawer" id="attachment-drawer" aria-hidden="true" aria-label="Attachment preview">
+      <header>
+        <div>
+          <strong id="attachment-title">Attachment</strong>
+          <span id="attachment-meta">Preview</span>
+        </div>
+        <div class="drawer-actions">
+          <a id="attachment-open" href="#" target="_blank" rel="noreferrer" aria-label="Open attachment in a new tab" title="Open in a new tab">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7" /><path d="M10 14 21 3" /><path d="M21 14v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6" /></svg>
+          </a>
+          <button class="icon-button" type="button" id="attachment-close" aria-label="Close attachment preview" title="Close preview">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+          </button>
+        </div>
+      </header>
+      <div class="attachment-body" id="attachment-body"></div>
+    </aside>
+
+    <div class="message-preview-modal" id="message-preview-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="message-preview-title">
+      <button class="message-preview-backdrop" type="button" data-message-preview-close aria-label="Close full prompt preview"></button>
+      <section class="message-preview-panel">
+        <header>
+          <div>
+            <strong id="message-preview-title">Full prompt</strong>
+            <span id="message-preview-meta">Transcript message</span>
+          </div>
+          <button class="icon-button" type="button" id="message-preview-close" data-message-preview-close aria-label="Close full prompt preview" title="Close preview">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+          </button>
+        </header>
+        <div class="message-preview-body" id="message-preview-body"></div>
+      </section>
+    </div>
+
+    <nav class="section-map" id="section-map" aria-label="Presentation roadmap"></nav>
+
+    <nav class="deck-controls" aria-label="Presentation controls">
+      <button class="icon-button" type="button" id="prev-slide" aria-label="Previous" title="Previous">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+      </button>
+      <div class="progress-track" aria-hidden="true"><span id="progress-fill"></span></div>
+      <span class="slide-count" id="slide-count">0 / 0</span>
+      <button class="icon-button" type="button" id="next-slide" aria-label="Next" title="Next">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+      </button>
+      <button class="icon-button" type="button" id="fullscreen-toggle" aria-label="Toggle fullscreen" title="Toggle fullscreen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5" /><path d="M16 3h5v5" /><path d="M21 16v5h-5" /><path d="M3 16v5h5" /></svg>
+      </button>
+    </nav>
+
+    <script src="app.js?v=20260706-07"></script>
+  </body>
+</html>

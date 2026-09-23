@@ -1,0 +1,458 @@
+{
+  "id": "client-reporting",
+  "title": "Healthcare client: from spreadsheet to verified dashboard",
+  "assistantName": "Codex",
+  "context": "Condensed from many Codex sessions. The briefs are paraphrased; the steps, findings and numbers come from the repo's commits and docs. Client, account and campaign identifiers removed.",
+  "metrics": [
+    {
+      "value": "2 days",
+      "label": "to production"
+    },
+    {
+      "value": "5",
+      "label": "sources"
+    },
+    {
+      "value": "160k",
+      "label": "country × campaign rows"
+    },
+    {
+      "value": "0.007%",
+      "label": "unallocated spend"
+    }
+  ],
+  "messages": [
+    {
+      "id": "p01_user",
+      "role": "user",
+      "name": "Brief",
+      "text": "Replace the client's spreadsheet with a daily dashboard. Start with discovery; no implementation until decisions are made.",
+      "compact": {
+        "label": "Brief",
+        "title": "Discovery first",
+        "summary": "Replace the client's spreadsheet with a daily dashboard. Start with discovery; no implementation until decisions are made."
+      }
+    },
+    {
+      "id": "p02_tool",
+      "role": "tool",
+      "name": "BigQuery · Sheets · Git",
+      "text": "Read schemas, aggregates and logs. Nothing was changed.",
+      "compact": {
+        "label": "Discovery",
+        "title": "Sources checked",
+        "summary": "Read-only.",
+        "items": [
+          "GA4 export: 231 daily tables",
+          "Ads mart: 8,533 campaign/day rows",
+          "Spreadsheet: 12 tabs, 356,657 Ads rows",
+          "8 reference repos"
+        ]
+      }
+    },
+    {
+      "id": "p03_assistant",
+      "role": "assistant",
+      "name": "Codex",
+      "text": "The sources are sufficient, but there are 9 gaps and 8 decisions that are yours.",
+      "compact": {
+        "title": "Discovery report",
+        "summary": "9 gaps, 8 questions for a human.",
+        "items": [
+          "Shopify token returns 401",
+          "Orders have no country",
+          "GeoStats has no Performance Max",
+          "What counts as \"revenue\"?"
+        ]
+      },
+      "contentBlocks": [
+        {
+          "type": "table",
+          "title": "Main gaps",
+          "columns": [
+            {
+              "key": "gap",
+              "label": "Gap"
+            },
+            {
+              "key": "risk",
+              "label": "Risk"
+            }
+          ],
+          "rows": [
+            {
+              "gap": "Shopify extractor: HTTP 401",
+              "risk": "Data only up to July"
+            },
+            {
+              "gap": "Orders have no country",
+              "risk": "No country view"
+            },
+            {
+              "gap": "GeoStats contains Search only",
+              "risk": "PMax spend has no country"
+            },
+            {
+              "gap": "Spreadsheet has no campaign ID",
+              "risk": "Renamed campaigns split in two"
+            },
+            {
+              "gap": "Different freshness: July / August / yesterday",
+              "risk": "Wrong YoY comparisons"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "Decisions for you",
+          "text": "Domain, Woo → Shopify migration boundary, revenue definition, country rule (shipping or billing), access."
+        }
+      ],
+      "attachments": [
+        {
+          "title": "discovery-report.md",
+          "type": "Doc",
+          "path": "assets/attachments/client-discovery-excerpt.md"
+        }
+      ],
+      "tooltip": {
+        "title": "A document first",
+        "body": "The agent says what was checked and what wasn't, and stops for decisions.",
+        "placement": "left"
+      }
+    },
+    {
+      "id": "p04_user",
+      "role": "user",
+      "name": "Brief",
+      "text": "Net and total revenue; Shopify from 29 April 2026, Woo before; paid, non-test orders only; refunds on the order date; Google login allowlist.",
+      "compact": {
+        "label": "Brief",
+        "title": "Decisions",
+        "summary": "Net and total revenue; Shopify from 29 April 2026, Woo before; paid, non-test orders only; refunds on the order date; Google login allowlist."
+      }
+    },
+    {
+      "id": "p05_tool",
+      "role": "tool",
+      "name": "Cloud Run · Shopify API",
+      "text": "The Shopify pipeline is deployed and verified.",
+      "compact": {
+        "label": "Pipeline",
+        "title": "Shopify → BigQuery",
+        "summary": "Daily at 05:15, 72-hour overlap.",
+        "items": [
+          "4,894 orders, 100 API calls",
+          "190 of 190 totals match the spreadsheet",
+          "Second run: 0 duplicates",
+          "Token renewed on every run"
+        ]
+      }
+    },
+    {
+      "id": "p06_assistant",
+      "role": "assistant",
+      "name": "Codex",
+      "text": "The dashboard is live, but Ads by country is deliberately hidden.",
+      "compact": {
+        "title": "Hidden on purpose",
+        "summary": "On a sample day ~2/3 of spend (PMax) has no country in the shared export.",
+        "items": [
+          "GeoStats: Search only",
+          "CampaignLocationTarget = targeting, not user location",
+          "No allocation by campaign name"
+        ]
+      },
+      "contentBlocks": [
+        {
+          "type": "paragraph",
+          "text": "Check for one day: Performance Max is about 67% of account spend, and GeoStats has not a single PMax row. Neither summing both location types nor using presence alone reproduces the spreadsheet."
+        },
+        {
+          "type": "callout",
+          "title": "No guessing",
+          "text": "The country view shows as unavailable until it reconciles with total account spend."
+        }
+      ]
+    },
+    {
+      "id": "p07_user",
+      "role": "user",
+      "name": "Brief",
+      "text": "Use the Google Ads MCP for physical user location, including PMax. Reconcile every campaign for every day.",
+      "compact": {
+        "label": "Brief",
+        "title": "New source",
+        "summary": "Use the Google Ads MCP for physical user location, including PMax. Reconcile every campaign for every day."
+      }
+    },
+    {
+      "id": "p08_system",
+      "role": "system",
+      "name": "System",
+      "kind": "service-event",
+      "service": "Google Ads MCP",
+      "event": "official googleads/google-ads-mcp",
+      "status": "connected",
+      "text": "Read-only, fixed account, pinned version. A result with 50,000 rows (the cap) is rejected, not treated as complete.",
+      "tooltip": {
+        "title": "A connector with boundaries",
+        "body": "Here MCP is a source under contract: scope, row cap, provenance and the export's SHA-256.",
+        "placement": "right"
+      }
+    },
+    {
+      "id": "p09_tool",
+      "role": "tool",
+      "name": "Google Ads MCP → BigQuery",
+      "text": "365-day backfill, reconciled by campaign and day.",
+      "compact": {
+        "label": "Backfill",
+        "title": "365 days, every campaign/day",
+        "summary": "Countries reconcile with account spend.",
+        "items": [
+          "160,184 user-location rows",
+          "8,558 campaign/day control rows",
+          "Unallocated: 0.0067% → \"Unknown\"",
+          "2 unnamed geo IDs: kept, not guessed"
+        ]
+      }
+    },
+    {
+      "id": "p10_assistant",
+      "role": "assistant",
+      "name": "Codex",
+      "text": "Unexpected: the shared mart is ~0.44% below the API. Names aren't the cause.",
+      "compact": {
+        "title": "Cost mismatch",
+        "summary": "291 days outside tolerance. Same campaign, same day, two different costs in raw.",
+        "items": [
+          "CampaignStats ≠ CampaignBasicStats",
+          "The bug is in the shared export",
+          "MCP takes precedence on verified days"
+        ]
+      },
+      "thinking": {
+        "title": "What it checked",
+        "status": "summary",
+        "summary": "The gap was traced to the raw tables, before naming and currency conversion.",
+        "items": [
+          "Compared MCP, CampaignBasicStats and CampaignStats for one ID and one date.",
+          "Ruled out renames and EUR conversion as the cause."
+        ]
+      },
+      "contentBlocks": [
+        {
+          "type": "table",
+          "title": "One campaign, one date",
+          "columns": [
+            {
+              "key": "src",
+              "label": "Source"
+            },
+            {
+              "key": "cost",
+              "label": "Cost EUR",
+              "align": "right"
+            },
+            {
+              "key": "clk",
+              "label": "Clicks",
+              "align": "right"
+            }
+          ],
+          "rows": [
+            {
+              "src": "MCP query",
+              "cost": "95.41",
+              "clk": "360"
+            },
+            {
+              "src": "Raw CampaignBasicStats",
+              "cost": "95.41",
+              "clk": "360"
+            },
+            {
+              "src": "Raw CampaignStats → shared mart",
+              "cost": "58.28",
+              "clk": "360",
+              "emphasis": true
+            }
+          ]
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "The reference pipeline is not touched. The issue is logged for a separate fix.",
+            "The DTS copy keeps running in parallel for comparison and fallback."
+          ]
+        }
+      ],
+      "attachments": [
+        {
+          "title": "ads-mcp-reconciliation.md",
+          "type": "Doc",
+          "path": "assets/attachments/client-mcp-reconciliation.md"
+        }
+      ],
+      "tooltip": {
+        "title": "A finding from reconciliation",
+        "body": "The bug was in a tool every client uses. We found it because the second project reconciled the numbers.",
+        "placement": "left"
+      }
+    },
+    {
+      "id": "p11_tool",
+      "role": "tool",
+      "name": "Cloud Scheduler · Cloud Run",
+      "text": "The MCP job is in production.",
+      "compact": {
+        "label": "Production",
+        "title": "ads-mcp-sync",
+        "summary": "07:25 and 13:25, the last 31 days every run.",
+        "items": [
+          "Publishes only if checks pass",
+          "Sum by country = account spend",
+          "38 unit tests"
+        ]
+      }
+    }
+  ],
+  "steps": [
+    {
+      "caption": "The work starts with discovery, not code.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "p01_user"
+        }
+      ]
+    },
+    {
+      "caption": "The agent reads the sources without changing anything.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "p02_tool"
+        }
+      ]
+    },
+    {
+      "caption": "The result is a document with gaps and questions.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "p03_assistant",
+          "showTooltip": true
+        }
+      ]
+    },
+    {
+      "caption": "Open the discovery report.",
+      "actions": [
+        {
+          "type": "clearTooltip"
+        },
+        {
+          "type": "openArtifact",
+          "path": "assets/attachments/client-discovery-excerpt.md"
+        }
+      ]
+    },
+    {
+      "caption": "A human decides the business rules.",
+      "actions": [
+        {
+          "type": "closeArtifact"
+        },
+        {
+          "type": "appendMessage",
+          "messageId": "p04_user"
+        }
+      ]
+    },
+    {
+      "caption": "The Shopify pipeline is live and reconciled.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "p05_tool"
+        }
+      ]
+    },
+    {
+      "caption": "The country view is hidden because it isn't verified.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "p06_assistant"
+        }
+      ]
+    },
+    {
+      "caption": "A new source for the gap.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "p07_user"
+        }
+      ]
+    },
+    {
+      "caption": "MCP with clear boundaries.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "p08_system",
+          "showTooltip": true
+        }
+      ]
+    },
+    {
+      "caption": "365-day backfill, reconciled by campaign and day.",
+      "actions": [
+        {
+          "type": "clearTooltip"
+        },
+        {
+          "type": "appendMessage",
+          "messageId": "p09_tool"
+        }
+      ]
+    },
+    {
+      "caption": "Reconciliation finds a bug in the shared export.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "p10_assistant",
+          "showTooltip": true
+        }
+      ]
+    },
+    {
+      "caption": "Open the evidence.",
+      "actions": [
+        {
+          "type": "clearTooltip"
+        },
+        {
+          "type": "openArtifact",
+          "path": "assets/attachments/client-mcp-reconciliation.md"
+        }
+      ]
+    },
+    {
+      "caption": "In production, with checks before publishing.",
+      "actions": [
+        {
+          "type": "closeArtifact"
+        },
+        {
+          "type": "appendMessage",
+          "messageId": "p11_tool"
+        }
+      ]
+    }
+  ]
+}
