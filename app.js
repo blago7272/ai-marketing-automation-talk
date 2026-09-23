@@ -2597,7 +2597,7 @@ class AIPresentationFramework {
 
 async function loadJSON(path) {
   const separator = path.includes("?") ? "&" : "?";
-  const response = await fetch(`${path}${separator}v=${DATA_VERSION}`);
+  const response = await fetch(`${path}${separator}v=${DATA_VERSION}`, { cache: "no-cache" });
   if (!response.ok) throw new Error(`Failed to load ${path}: HTTP ${response.status}`);
   return response.json();
 }
