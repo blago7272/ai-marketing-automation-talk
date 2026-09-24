@@ -1698,94 +1698,348 @@
       ]
     },
     {
-      "id": "ex-5b",
-      "type": "ai-demo",
-      "background": "focus",
-      "title": "In practice: the feedback conversation",
-      "body": "The same two days as a conversation: what was asked, what the agent did, and where it pushed back.",
-      "transcript": "data/transcripts/feedback.json"
-    },
-    {
-      "id": "agenda",
+      "id": "findings-agenda",
       "type": "agenda",
       "background": "calm",
-      "title": "Agenda",
-      "body": "Two real projects, one infrastructure decision and one framework for reuse.",
+      "title": "Findings",
+      "body": "What building these projects taught me, beyond the tools.",
       "items": [
         {
-          "title": "Why I work in code repositories",
-          "body": "The repo is the project's memory, for me and for the AI agent.",
-          "id": "agenda-item-1",
+          "title": "How to organise your knowledge and work",
+          "body": "Knowledge, tooling, business cases, clients.",
+          "id": "fa-1",
           "reveal": "collapse"
         },
         {
-          "title": "Project 1: Google Ads exporter",
-          "body": "One shared model for 90+ ad accounts on BigQuery and dbt, plus a cost cut from $449 to $15 a month.",
-          "id": "agenda-item-2",
+          "title": "Scaffolding that preserves project memory",
+          "body": "What the agent reads before every task.",
+          "id": "fa-2",
+          "reveal": "collapse"
+        },
+        {
+          "title": "Why I work in code repositories",
+          "body": "History, memory, tests, reuse.",
+          "id": "fa-3",
           "reveal": "collapse"
         },
         {
           "title": "Cloud or workflow platform",
-          "body": "When I pick Cloud Run and BigQuery, and when Make or n8n.",
-          "id": "agenda-item-3",
+          "body": "When Cloud Run and BigQuery, when Make or n8n.",
+          "id": "fa-4",
           "reveal": "collapse"
         },
         {
-          "title": "Project 2: healthcare client reporting",
-          "body": "Shopify, WooCommerce, Google Ads and GA4 in a protected dashboard in 2 days. Where exports, APIs and MCP fit.",
-          "id": "agenda-item-4",
-          "reveal": "collapse"
-        },
-        {
-          "title": "A framework for reuse",
-          "body": "How to organise knowledge, tools and business cases.",
-          "id": "agenda-item-5",
+          "title": "Practical tips for working with AI",
+          "body": "What I do on every project.",
+          "id": "fa-5",
           "reveal": "collapse"
         }
       ],
       "revealSteps": [
         {
-          "caption": "agenda-item-1",
+          "caption": "How to organise your knowledge and work",
           "actions": [
             {
               "type": "showBlock",
-              "target": "agenda-item-1"
+              "target": "fa-1"
             }
           ]
         },
         {
-          "caption": "agenda-item-2",
+          "caption": "Scaffolding that preserves project memory",
           "actions": [
             {
               "type": "showBlock",
-              "target": "agenda-item-2"
+              "target": "fa-2"
             }
           ]
         },
         {
-          "caption": "agenda-item-3",
+          "caption": "Why I work in code repositories",
           "actions": [
             {
               "type": "showBlock",
-              "target": "agenda-item-3"
+              "target": "fa-3"
             }
           ]
         },
         {
-          "caption": "agenda-item-4",
+          "caption": "Cloud or workflow platform",
           "actions": [
             {
               "type": "showBlock",
-              "target": "agenda-item-4"
+              "target": "fa-4"
             }
           ]
         },
         {
-          "caption": "agenda-item-5",
+          "caption": "Practical tips for working with AI",
           "actions": [
             {
               "type": "showBlock",
-              "target": "agenda-item-5"
+              "target": "fa-5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "organise",
+      "type": "compose",
+      "background": "focus",
+      "layout": "stack",
+      "title": "How I organise knowledge and work",
+      "blocks": [
+        {
+          "id": "org-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "How I organise knowledge and work"
+        },
+        {
+          "id": "org-lead",
+          "type": "text",
+          "paragraphs": [
+            "Four layers. Each builds on the one before, and every new client adds back to the first three."
+          ]
+        },
+        {
+          "id": "org-flow",
+          "type": "process",
+          "steps": [
+            {
+              "id": "org-1",
+              "title": "Knowledge",
+              "body": "What we know: discovery templates, metric definitions, contracts, lessons and rejected ideas."
+            },
+            {
+              "id": "org-2",
+              "title": "Tooling",
+              "body": "What we build once: extractors, dbt models, the FX pipeline, QA suite, notifier, deploy scripts.",
+              "visible": false
+            },
+            {
+              "id": "org-3",
+              "title": "Business cases",
+              "body": "Reusable solutions: Ads reporting, commerce + Ads ROAS, product feeds, tracking.",
+              "visible": false
+            },
+            {
+              "id": "org-4",
+              "title": "Clients",
+              "body": "One repo per client: its semantic library and config, built from the layers above.",
+              "visible": false,
+              "goal": true
+            }
+          ],
+          "loop": {
+            "from": 4,
+            "to": 1,
+            "label": "Every client feeds back into knowledge and tooling"
+          }
+        },
+        {
+          "id": "org-ex",
+          "type": "cards",
+          "columns": 2,
+          "reveal": "collapse",
+          "cards": [
+            {
+              "id": "org-ex-1",
+              "pros": [
+                "Google Ads exporter, Shopify extractor, GTM extractor, product feed engine",
+                "Each one a repo, reused as a reference"
+              ],
+              "prosLabel": "Tooling, in my GIT Projects folder"
+            },
+            {
+              "id": "org-ex-2",
+              "notes": [
+                "GIT Projects/Clients/<client>--reporting",
+                "Reads the tooling repos, never modifies them"
+              ],
+              "notesLabel": "Clients, in their own folder"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "Tooling",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "org-2"
+            }
+          ]
+        },
+        {
+          "caption": "Business cases",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "org-3"
+            }
+          ]
+        },
+        {
+          "caption": "Clients",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "org-4"
+            }
+          ]
+        },
+        {
+          "caption": "Where it lives",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "org-ex"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scaffolding",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Scaffolding for project memory",
+      "blocks": [
+        {
+          "id": "sc-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "Scaffolding that preserves project memory"
+        },
+        {
+          "id": "sc-lead",
+          "type": "text",
+          "paragraphs": [
+            "An AI agent starts every session from zero. The repo is its memory, so these files come first."
+          ]
+        },
+        {
+          "id": "sc-cards",
+          "type": "cards",
+          "columns": 3,
+          "cards": [
+            {
+              "label": "AGENTS.md",
+              "title": "Operating rules",
+              "body": "What to read first, what never to touch, where to deploy. \"Do not modify any reference repository.\"",
+              "id": "sc-1",
+              "reveal": "collapse"
+            },
+            {
+              "label": "docs/discovery",
+              "title": "What we found",
+              "body": "What was checked, what is missing, and the questions for a human.",
+              "id": "sc-2",
+              "reveal": "collapse"
+            },
+            {
+              "label": "docs/decisions.md",
+              "title": "What was decided",
+              "body": "The answers, with dates. They supersede provisional notes.",
+              "id": "sc-3",
+              "reveal": "collapse"
+            },
+            {
+              "label": "docs/CONTRACTS.md",
+              "title": "Rules to follow",
+              "body": "Revenue, source precedence, IDs, currency, access. Read before every change.",
+              "id": "sc-4",
+              "reveal": "collapse"
+            },
+            {
+              "label": "Runbooks",
+              "title": "How to operate",
+              "body": "Deploy, backfill, recover. E.g. the FX backfill and the Ads import runbook.",
+              "id": "sc-5",
+              "reveal": "collapse"
+            },
+            {
+              "label": "Commit history",
+              "title": "Why it changed",
+              "body": "One change, one commit, one reason: the timeline of every decision.",
+              "id": "sc-6",
+              "reveal": "collapse"
+            }
+          ]
+        },
+        {
+          "id": "sc-rule",
+          "type": "callout",
+          "reveal": "collapse",
+          "label": "Rule of thumb",
+          "title": "If a decision isn't written in the repo, the next session will undo it."
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "AGENTS.md",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "sc-1"
+            }
+          ]
+        },
+        {
+          "caption": "docs/discovery",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "sc-2"
+            }
+          ]
+        },
+        {
+          "caption": "docs/decisions.md",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "sc-3"
+            }
+          ]
+        },
+        {
+          "caption": "docs/CONTRACTS.md",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "sc-4"
+            }
+          ]
+        },
+        {
+          "caption": "Runbooks",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "sc-5"
+            }
+          ]
+        },
+        {
+          "caption": "Commit history",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "sc-6"
+            }
+          ]
+        },
+        {
+          "caption": "Rule of thumb",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "sc-rule"
             }
           ]
         }
@@ -1832,7 +2086,7 @@
             {
               "number": "03",
               "title": "Tests",
-              "body": "155 dbt tests in the exporter, 38 unit tests in the client project. Bad data never reaches the client.",
+              "body": "Business rules become checks the agent must pass before anything ships. They catch its mistakes and ours: a new FX test found a 13-day gap. 155 data + 38 unit tests.",
               "id": "why-repos-cards-3",
               "reveal": "collapse"
             },
@@ -1896,6 +2150,191 @@
             {
               "type": "showBlock",
               "target": "why-repos-quote"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cloud-vs-workflow",
+      "type": "comparison",
+      "background": "dense",
+      "title": "Cloud or workflow platform",
+      "body": "It isn't either-or. The question is how much data there is, how often the rules change, and who will maintain it.",
+      "columns": [
+        {
+          "label": "Make / n8n / Zapier",
+          "title": "Workflow platform",
+          "variant": "before",
+          "items": [
+            "Little data, event → action (lead → CRM → Slack)",
+            "Business users can change the steps themselves",
+            "A prototype in hours",
+            "Limits on operations and run time",
+            "Hard to test, hard to diff versions"
+          ]
+        },
+        {
+          "label": "Cloud Run + BigQuery + dbt",
+          "title": "Cloud infrastructure",
+          "variant": "after",
+          "items": [
+            "Hundreds of thousands of rows a day, years of history",
+            "Rules that must be verified (currencies, attribution, ROAS)",
+            "Tests, staging, rollback to a previous image",
+            "Cost measured in GB, not in task counts",
+            "The AI agent writes the code, so \"hard to maintain\" is no longer an argument"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tips",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Practical tips",
+      "blocks": [
+        {
+          "id": "tp-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "Practical tips for working with AI"
+        },
+        {
+          "id": "tp-cards",
+          "type": "cards",
+          "columns": 4,
+          "cards": [
+            {
+              "number": "01",
+              "title": "Discovery before code",
+              "body": "Let the agent inspect read-only first, and stop for decisions.",
+              "id": "tp-1",
+              "reveal": "collapse"
+            },
+            {
+              "number": "02",
+              "title": "References are read-only",
+              "body": "Copy patterns into the new repo; never edit a working system.",
+              "id": "tp-2",
+              "reveal": "collapse"
+            },
+            {
+              "number": "03",
+              "title": "Never weaken a check",
+              "body": "Inspect failures before retrying. Don't turn missing data into zeros to pass.",
+              "id": "tp-3",
+              "reveal": "collapse"
+            },
+            {
+              "number": "04",
+              "title": "Measure before optimising",
+              "body": "Billed bytes, row counts, run times. Then change one thing.",
+              "id": "tp-4",
+              "reveal": "collapse"
+            },
+            {
+              "number": "05",
+              "title": "Write down trade-offs",
+              "body": "Record rejected ideas and why, so they aren't proposed again.",
+              "id": "tp-5",
+              "reveal": "collapse"
+            },
+            {
+              "number": "06",
+              "title": "Secrets stay out of Git",
+              "body": "Credentials in Secret Manager; tokens renewed, never saved.",
+              "id": "tp-6",
+              "reveal": "collapse"
+            },
+            {
+              "number": "07",
+              "title": "Check it like a user",
+              "body": "Open the report in a browser, not only the tests.",
+              "id": "tp-7",
+              "reveal": "collapse"
+            },
+            {
+              "number": "08",
+              "title": "Keep humans on definitions",
+              "body": "Revenue, attribution, access: a person decides, the agent records.",
+              "id": "tp-8",
+              "reveal": "collapse"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "Discovery before code",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "tp-1"
+            }
+          ]
+        },
+        {
+          "caption": "References are read-only",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "tp-2"
+            }
+          ]
+        },
+        {
+          "caption": "Never weaken a check",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "tp-3"
+            }
+          ]
+        },
+        {
+          "caption": "Measure before optimising",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "tp-4"
+            }
+          ]
+        },
+        {
+          "caption": "Write down trade-offs",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "tp-5"
+            }
+          ]
+        },
+        {
+          "caption": "Secrets stay out of Git",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "tp-6"
+            }
+          ]
+        },
+        {
+          "caption": "Check it like a user",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "tp-7"
+            }
+          ]
+        },
+        {
+          "caption": "Keep humans on definitions",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "tp-8"
             }
           ]
         }
@@ -2058,39 +2497,6 @@
               "type": "showBlock",
               "target": "arch-orchestrator"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "cloud-vs-workflow",
-      "type": "comparison",
-      "background": "dense",
-      "title": "Cloud or workflow platform",
-      "body": "It isn't either-or. The question is how much data there is, how often the rules change, and who will maintain it.",
-      "columns": [
-        {
-          "label": "Make / n8n / Zapier",
-          "title": "Workflow platform",
-          "variant": "before",
-          "items": [
-            "Little data, event → action (lead → CRM → Slack)",
-            "Business users can change the steps themselves",
-            "A prototype in hours",
-            "Limits on operations and run time",
-            "Hard to test, hard to diff versions"
-          ]
-        },
-        {
-          "label": "Cloud Run + BigQuery + dbt",
-          "title": "Cloud infrastructure",
-          "variant": "after",
-          "items": [
-            "Hundreds of thousands of rows a day, years of history",
-            "Rules that must be verified (currencies, attribution, ROAS)",
-            "Tests, staging, rollback to a previous image",
-            "Cost measured in GB, not in task counts",
-            "The AI agent writes the code, so \"hard to maintain\" is no longer an argument"
           ]
         }
       ]
