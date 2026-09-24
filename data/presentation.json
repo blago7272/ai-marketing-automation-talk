@@ -1666,53 +1666,163 @@
           "id": "ex-5-title",
           "type": "heading",
           "variant": "step",
-          "text": "In practice: two days of feedback, from the commit log"
+          "text": "In practice: two days, five feedback rounds"
         },
         {
           "id": "ex-5-lead",
           "type": "text",
           "paragraphs": [
-            "The healthcare client's dashboard after its first preview. Each change is a commit, so the history of every decision is kept."
+            "The healthcare client's dashboard after its first preview, from the project log. Each round: feedback → change → tests → deploy."
           ]
         },
         {
-          "id": "ex-5-tl",
-          "type": "timeline",
-          "columns": 4,
-          "items": [
+          "id": "ex-5-flow",
+          "type": "process",
+          "steps": [
             {
-              "label": "Day 1 · 13:38",
-              "title": "First protected preview",
-              "body": "Dashboard live behind Google login."
+              "number": "D1",
+              "title": "13:38 · First preview",
+              "body": "Protected dashboard behind Google sign-in.",
+              "id": "ex-5-n1"
             },
             {
-              "label": "Day 1 · 14:20",
-              "title": "Preview feedback applied",
-              "body": "Filters, projections, comparisons, source explanations."
+              "number": "R1",
+              "title": "14:20 · Round 1",
+              "body": "5 requested changes applied, tested, deployed: 42 min after the preview.",
+              "id": "ex-5-n2",
+              "visible": false
             },
             {
-              "label": "Day 2 · 09:29",
-              "title": "Refined ROAS and ranking",
-              "body": "Revenue ranking and country AOV added."
+              "number": "R2",
+              "title": "14:48 · Round 2",
+              "body": "Hover tooltips; projection drawn as an outline.",
+              "id": "ex-5-n3",
+              "visible": false
             },
             {
-              "label": "Day 2 · 10:06",
-              "title": "Source decision",
-              "body": "Final legacy Ads export confirmed as canonical."
+              "number": "R3",
+              "title": "15:53 · Round 3",
+              "body": "Monthly KPI selector and country charts. The agent flags that ROAS isn't additive.",
+              "id": "ex-5-n4",
+              "visible": false
             },
             {
-              "label": "Day 2 · 11:11",
-              "title": "Ads ROAS by country",
-              "body": "Plus a top-20 country view."
+              "number": "R4",
+              "title": "Day 2 · 09:29",
+              "body": "ROAS to 2 decimals, revenue ranking, AOV instead of a redundant column.",
+              "id": "ex-5-n5",
+              "visible": false
             },
             {
-              "label": "Day 2 · 11:33",
-              "title": "Client access",
-              "body": "Two client users given access."
+              "number": "R5",
+              "title": "Day 2 · 10:06–11:33",
+              "body": "Legacy export approved as canonical; drill-downs; client access.",
+              "goal": true,
+              "id": "ex-5-n6",
+              "visible": false
+            }
+          ],
+          "loop": {
+            "from": 6,
+            "to": 2,
+            "label": "Each round is written back into the semantic library"
+          }
+        },
+        {
+          "id": "ex-5-kinds",
+          "type": "cards",
+          "columns": 3,
+          "reveal": "collapse",
+          "cards": [
+            {
+              "id": "ex-5-k1",
+              "pros": [
+                "Colours, ranking, labels, chart types"
+              ],
+              "prosLabel": "What the client changed"
+            },
+            {
+              "id": "ex-5-k2",
+              "todo": [
+                "A missing export, requested instead of invented",
+                "A misleading ROAS stack, explained and relabelled"
+              ],
+              "todoLabel": "What the agent raised"
+            },
+            {
+              "id": "ex-5-k3",
+              "notes": [
+                "Source precedence, access, desktop first"
+              ],
+              "notesLabel": "What a human decided"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "Round 1",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-5-n2"
+            }
+          ]
+        },
+        {
+          "caption": "Round 2",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-5-n3"
+            }
+          ]
+        },
+        {
+          "caption": "Round 3",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-5-n4"
+            }
+          ]
+        },
+        {
+          "caption": "Day 2 refinement",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-5-n5"
+            }
+          ]
+        },
+        {
+          "caption": "Decisions and access",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-5-n6"
+            }
+          ]
+        },
+        {
+          "caption": "Who drove each change",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-5-kinds"
             }
           ]
         }
       ]
+    },
+    {
+      "id": "ex-5b",
+      "type": "ai-demo",
+      "background": "focus",
+      "title": "In practice: the feedback conversation",
+      "body": "The same two days as a conversation: what was asked, what the agent did, and where it pushed back.",
+      "transcript": "data/transcripts/feedback.json"
     },
     {
       "id": "agenda",

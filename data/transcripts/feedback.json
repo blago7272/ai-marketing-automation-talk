@@ -1,0 +1,292 @@
+{
+  "id": "feedback",
+  "title": "Feedback loop: two days, five rounds",
+  "assistantName": "Codex",
+  "context": "Built from the healthcare client's docs/dashboard.md and commit log. Feedback items are the changes recorded after each preview; wording shortened, client figures removed.",
+  "metrics": [
+    {
+      "value": "5",
+      "label": "feedback rounds"
+    },
+    {
+      "value": "42 min",
+      "label": "from preview to first revision"
+    },
+    {
+      "value": "35",
+      "label": "tests by day 2"
+    }
+  ],
+  "messages": [
+    {
+      "id": "f01",
+      "role": "system",
+      "name": "System",
+      "kind": "service-event",
+      "service": "Cloud Run + IAP",
+      "event": "First protected preview",
+      "status": "deployed",
+      "time": "Day 1 · 13:38",
+      "text": "Overview cards, country and campaign drill-downs with YoY, GA4 acquisition, filters, CSV summaries and source definitions. Access: Google sign-in, exact email allowlist."
+    },
+    {
+      "id": "f02",
+      "role": "user",
+      "name": "Feedback",
+      "time": "Day 1",
+      "text": "Spend increases above 5% in red, decreases in green · Rank countries by the selected period's revenue · Show the current month's projection as a dotted bar · Label it ROAS and add prior-year cost to the drill-down · Move the coverage banners to Sources & Definitions",
+      "compact": {
+        "label": "Feedback · as recorded",
+        "title": "Round 1: the first preview",
+        "summary": "Recorded in docs/dashboard.md as the changes requested.",
+        "items": [
+          "Spend increases above 5% in red, decreases in green",
+          "Rank countries by the selected period's revenue",
+          "Show the current month's projection as a dotted bar",
+          "Label it ROAS and add prior-year cost to the drill-down",
+          "Move the coverage banners to Sources & Definitions"
+        ]
+      }
+    },
+    {
+      "id": "f03",
+      "role": "assistant",
+      "name": "Codex",
+      "time": "Day 1 · 14:20",
+      "text": "Applied, tested and deployed.",
+      "compact": {
+        "title": "Applied and deployed",
+        "summary": "22 tests passed, plus browser checks. No console errors.",
+        "items": [
+          "Projection = revenue to date ÷ completed days × days in month",
+          "Closed months and partial ranges are not projected",
+          "Moving the banners doesn't mean the data is complete"
+        ]
+      }
+    },
+    {
+      "id": "f04",
+      "role": "assistant",
+      "name": "Codex",
+      "time": "Day 1",
+      "text": "Current country ROAS still needs a complete export after the sheet cutoff. None is fabricated.",
+      "compact": {
+        "title": "The agent asks for data",
+        "summary": "Instead of filling the gap, it requested a manual export.",
+        "items": [
+          "By day, physical user-location country and campaign",
+          "All campaign types, from 1 January",
+          "Cost, conversions, value and currency"
+        ]
+      },
+      "tooltip": {
+        "title": "Asking, not guessing",
+        "body": "A gap in the data becomes a request to a human, not an invented number.",
+        "placement": "left"
+      }
+    },
+    {
+      "id": "f05",
+      "role": "user",
+      "name": "Feedback",
+      "time": "Day 1 · 14:48",
+      "text": "Hover tooltips on the bars · Projection as an outline, only actual revenue filled",
+      "compact": {
+        "label": "Feedback · as recorded",
+        "title": "Round 2: interaction",
+        "summary": "Recorded in docs/dashboard.md as the changes requested.",
+        "items": [
+          "Hover tooltips on the bars",
+          "Projection as an outline, only actual revenue filled"
+        ]
+      }
+    },
+    {
+      "id": "f06",
+      "role": "user",
+      "name": "Feedback",
+      "time": "Day 1 · 15:53",
+      "text": "A selector for Revenue, Ad spend, ROAS and Orders · Monthly totals and shares by country",
+      "compact": {
+        "label": "Feedback · as recorded",
+        "title": "Round 3: monthly KPIs",
+        "summary": "Recorded in docs/dashboard.md as the changes requested.",
+        "items": [
+          "A selector for Revenue, Ad spend, ROAS and Orders",
+          "Monthly totals and shares by country"
+        ]
+      }
+    },
+    {
+      "id": "f07",
+      "role": "assistant",
+      "name": "Codex",
+      "time": "Day 1 · 15:53",
+      "text": "ROAS is not additive across countries.",
+      "compact": {
+        "title": "The agent pushes back",
+        "summary": "Its stacked segments show each country's revenue over total spend, and are labelled that way.",
+        "items": [
+          "Country breakdown used as the default while awaiting clarification",
+          "Responsive layout deferred: desktop is the priority, at the user's request"
+        ]
+      },
+      "tooltip": {
+        "title": "Definitions over pretty charts",
+        "body": "A stacked ROAS chart would mislead, so the agent explains and labels it.",
+        "placement": "left"
+      }
+    },
+    {
+      "id": "f08",
+      "role": "user",
+      "name": "Feedback",
+      "time": "Day 2 · 09:29",
+      "text": "ROAS with two decimals everywhere · Ranking by revenue · Replace the redundant prior-year cost column with AOV",
+      "compact": {
+        "label": "Feedback · as recorded",
+        "title": "Round 4: display refinement",
+        "summary": "Recorded in docs/dashboard.md as the changes requested.",
+        "items": [
+          "ROAS with two decimals everywhere",
+          "Ranking by revenue",
+          "Replace the redundant prior-year cost column with AOV"
+        ]
+      }
+    },
+    {
+      "id": "f09",
+      "role": "user",
+      "name": "Feedback",
+      "time": "Day 2 · 10:06–11:33",
+      "text": "Final legacy Ads export approved as canonical · Month drill-down and current-month projections for campaigns · Access for two client users",
+      "compact": {
+        "label": "Feedback · as recorded",
+        "title": "Round 5: decisions and access",
+        "summary": "Recorded in docs/dashboard.md as the changes requested.",
+        "items": [
+          "Final legacy Ads export approved as canonical",
+          "Month drill-down and current-month projections for campaigns",
+          "Access for two client users"
+        ]
+      }
+    },
+    {
+      "id": "f10",
+      "role": "tool",
+      "name": "Git",
+      "time": "Day 2",
+      "text": "Decisions are written back into CONTRACTS.md.",
+      "compact": {
+        "label": "Semantic library",
+        "title": "Feedback becomes rules",
+        "summary": "The next change, and the next client, start from these.",
+        "items": [
+          "Projections: shown only for complete, reconciled months",
+          "ROAS: summed value ÷ summed cost, 2 decimals",
+          "Access list: part of the deployment contract"
+        ]
+      }
+    }
+  ],
+  "steps": [
+    {
+      "caption": "Day 1, 13:38: the first protected preview.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "f01"
+        }
+      ]
+    },
+    {
+      "caption": "Round 1: what the client asked to change.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "f02"
+        }
+      ]
+    },
+    {
+      "caption": "42 minutes later: applied, tested, deployed.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "f03"
+        }
+      ]
+    },
+    {
+      "caption": "Where data is missing, the agent asks for it.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "f04",
+          "showTooltip": true
+        }
+      ]
+    },
+    {
+      "caption": "Round 2: interaction.",
+      "actions": [
+        {
+          "type": "clearTooltip"
+        },
+        {
+          "type": "appendMessage",
+          "messageId": "f05"
+        }
+      ]
+    },
+    {
+      "caption": "Round 3: monthly KPIs.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "f06"
+        }
+      ]
+    },
+    {
+      "caption": "The agent pushes back on a misleading chart.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "f07",
+          "showTooltip": true
+        }
+      ]
+    },
+    {
+      "caption": "Day 2: display refinement.",
+      "actions": [
+        {
+          "type": "clearTooltip"
+        },
+        {
+          "type": "appendMessage",
+          "messageId": "f08"
+        }
+      ]
+    },
+    {
+      "caption": "Decisions and access.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "f09"
+        }
+      ]
+    },
+    {
+      "caption": "Feedback becomes rules in the semantic library.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "f10"
+        }
+      ]
+    }
+  ]
+}
