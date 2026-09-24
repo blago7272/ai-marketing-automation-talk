@@ -4974,3 +4974,4 @@ body[data-contrast-theme="light"] .attachment-body pre {
 
 /* Full-opacity compact flow (e.g. a daily run sequence) */
 .block-process.is-compact.is-flow .process-node { opacity: 1; }
+.block-grid.is-stepgrid .block-image img[src*="telegram"] { max-height: 60vh; }

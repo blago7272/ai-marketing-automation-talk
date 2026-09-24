@@ -954,95 +954,90 @@
           "id": "ex-1-title",
           "type": "heading",
           "variant": "step",
-          "text": "In practice: exports first, connectors for the gaps"
+          "text": "In practice"
         },
         {
-          "id": "ex-1-lead",
-          "type": "text",
-          "paragraphs": [
-            "The wrapper around DTS: one Cloud Run job, started by Cloud Scheduler every day. It stops at the first failed check."
-          ]
-        },
-        {
-          "id": "ex-1-run",
-          "type": "process",
-          "variant": "compact",
-          "className": "is-flow",
-          "compact": true,
-          "steps": [
+          "id": "ex-1-grid",
+          "type": "grid",
+          "variant": "stepgrid",
+          "columns": 2,
+          "blocks": [
             {
-              "title": "Freshness gate"
+              "id": "ex-1-cards",
+              "type": "cards",
+              "variant": "stepgrid",
+              "columns": 1,
+              "cards": [
+                {
+                  "id": "ex-1-base",
+                  "pros": [
+                    "Google Ads DTS syncs every account into BigQuery daily",
+                    "94 accounts configured (39 active) in one config table; stale accounts are excluded, not silently dropped",
+                    "An account-sync wrapper acts as the export and backfill gate"
+                  ],
+                  "prosLabel": "Foundation"
+                },
+                {
+                  "id": "ex-1-gate",
+                  "reveal": "collapse",
+                  "todo": [
+                    "Automated data tests on every run: 155 checks for duplicates, gaps and currency coverage",
+                    "Freshness alerts: a stale account is excluded and reported with its lag",
+                    "Pipeline health check with an error resolver",
+                    "API checks"
+                  ],
+                  "todoLabel": "Freshness & health gate"
+                },
+                {
+                  "id": "ex-1-fx",
+                  "reveal": "collapse",
+                  "notes": [
+                    "Reports are in EUR; accounts spend in BGN, USD, GBP, RON, MXN",
+                    "Daily ECB reference rates; BGN uses its fixed peg (1.95583)",
+                    "Weekends and ECB holidays reuse the last published rate",
+                    "Example: a 13-day ECB gap left USD/GBP accounts without EUR cost. The refresh now restarts from its last loaded date, so gaps heal themselves"
+                  ],
+                  "notesLabel": "Specific case: exchange rates"
+                }
+              ]
             },
             {
-              "title": "Drop-out alert"
-            },
-            {
-              "title": "ECB rates"
-            },
-            {
-              "title": "dbt build"
-            },
-            {
-              "title": "dbt test"
-            },
-            {
-              "title": "Telegram summary"
-            }
-          ]
-        },
-        {
-          "id": "ex-1-cards",
-          "type": "cards",
-          "columns": 3,
-          "cards": [
-            {
-              "id": "ex-1-base",
-              "pros": [
-                "Google Ads DTS syncs every account into BigQuery daily",
-                "94 accounts in one config table; stale accounts are excluded, not silently dropped",
-                "Telegram summary only after a green release"
-              ],
-              "prosLabel": "The foundation: DTS export"
-            },
-            {
-              "id": "ex-1-gap",
-              "reveal": "collapse",
-              "cons": [
-                "The export's geo table has no Performance Max rows",
-                "On a sample day, ~2/3 of one client's spend had no country",
-                "Allocating it by campaign name would be a guess"
-              ],
-              "consLabel": "The gap we found"
-            },
-            {
-              "id": "ex-1-fix",
-              "reveal": "collapse",
-              "todo": [
-                "Official Google Ads MCP, read-only, fixed account",
-                "Results hitting the 50,000-row cap are rejected",
-                "Reconciled per campaign and day; 0.007% unallocated, labelled Unknown"
-              ],
-              "todoLabel": "The fix: a connector under contract"
+              "id": "ex-1-tg",
+              "type": "image",
+              "visible": false,
+              "src": "assets/media/telegram-health.jpg",
+              "alt": "Telegram health report from the notifier bot",
+              "title": "Notifications: the daily Telegram health report",
+              "caption": "Accounts status, excluded accounts with their lag, and alerts by type. Client names blurred."
             }
           ]
         }
       ],
       "revealSteps": [
         {
-          "caption": "The gap",
+          "caption": "Freshness & health gate",
           "actions": [
             {
               "type": "showBlock",
-              "target": "ex-1-gap"
+              "target": "ex-1-gate"
             }
           ]
         },
         {
-          "caption": "The fix",
+          "caption": "Exchange rates",
           "actions": [
             {
               "type": "showBlock",
-              "target": "ex-1-fix"
+              "target": "ex-1-fx"
+            }
+          ]
+        },
+        {
+          "caption": "Notifications",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-1-tg"
             }
           ]
         }
