@@ -354,14 +354,14 @@
             {
               "label": "vs. costly connectors",
               "title": "Lower cost",
-              "body": "Pay for cloud usage, not per-source licences. Our daily Ads build runs at about $15 a month.",
+              "body": "Pay for cloud usage, not per-source licences.",
               "id": "promise-3",
               "reveal": "collapse"
             },
             {
               "label": "vs. steep learning",
               "title": "Manageable learning curve",
-              "body": "You describe the goal and the rules; the agent writes the code. You need to know the data, not every line.",
+              "body": "You describe the goal and the rules; the agent writes the code. You need to know the data, not how to code.",
               "id": "promise-4",
               "reveal": "collapse"
             },
@@ -659,6 +659,703 @@
             {
               "type": "showBlock",
               "target": "approach-5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "process",
+      "type": "compose",
+      "background": "focus",
+      "layout": "stack",
+      "title": "The process",
+      "blocks": [
+        {
+          "id": "proc-title",
+          "type": "heading",
+          "text": "The process: from raw data to full automation"
+        },
+        {
+          "id": "proc-lead",
+          "type": "text",
+          "paragraphs": [
+            "Five steps we repeat for every client. Each one makes the next client cheaper, and together they lead to the end game."
+          ]
+        },
+        {
+          "id": "proc-flow",
+          "type": "process",
+          "steps": [
+            {
+              "title": "Raw data, a step away",
+              "body": "Identical data shape, synced into BigQuery by Google DTS.",
+              "id": "proc-1",
+              "visible": false
+            },
+            {
+              "title": "Context discovery",
+              "body": "Each client's business, written down as a semantic library.",
+              "id": "proc-2",
+              "visible": false
+            },
+            {
+              "title": "Adapt templates",
+              "body": "Reporting and UI templates, applied through the library.",
+              "id": "proc-3",
+              "visible": false
+            },
+            {
+              "title": "Maintainable pipelines",
+              "body": "Automated QA and data quality first, humans in the loop.",
+              "id": "proc-4",
+              "visible": false
+            },
+            {
+              "title": "Client feedback loop",
+              "body": "Every round of feedback refines the library.",
+              "id": "proc-5",
+              "visible": false
+            },
+            {
+              "title": "Full automation",
+              "body": "Data, analysis and alerts run themselves. People make the decisions.",
+              "goal": true,
+              "id": "proc-6",
+              "visible": false
+            }
+          ],
+          "loop": {
+            "from": 5,
+            "to": 2,
+            "label": "Feedback refines the semantic library"
+          }
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "Raw data, a step away",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "proc-1"
+            }
+          ]
+        },
+        {
+          "caption": "Context discovery",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "proc-2"
+            }
+          ]
+        },
+        {
+          "caption": "Adapt templates",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "proc-3"
+            }
+          ]
+        },
+        {
+          "caption": "Maintainable pipelines",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "proc-4"
+            }
+          ]
+        },
+        {
+          "caption": "Client feedback loop",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "proc-5"
+            }
+          ]
+        },
+        {
+          "caption": "The end game: full automation",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "proc-6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "step-1",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Step 1: Raw data with identical shape, a step away",
+      "blocks": [
+        {
+          "id": "step-1-stepper",
+          "type": "process",
+          "variant": "compact",
+          "compact": true,
+          "active": 1,
+          "steps": [
+            {
+              "title": "Raw data, a step away",
+              "goal": false
+            },
+            {
+              "title": "Context discovery",
+              "goal": false
+            },
+            {
+              "title": "Adapt templates",
+              "goal": false
+            },
+            {
+              "title": "Maintainable pipelines",
+              "goal": false
+            },
+            {
+              "title": "Client feedback loop",
+              "goal": false
+            },
+            {
+              "title": "Full automation",
+              "goal": true
+            }
+          ]
+        },
+        {
+          "id": "step-1-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "Step 1 · Raw data with identical shape, a step away"
+        },
+        {
+          "id": "step-1-lead",
+          "type": "text",
+          "paragraphs": [
+            "Google already delivers the raw data in the same shape for every account. Our job is not to extract it, but to manage it."
+          ]
+        },
+        {
+          "id": "step-1-grid",
+          "type": "grid",
+          "variant": "stepgrid",
+          "columns": 2,
+          "blocks": [
+            {
+              "id": "step-1-cards",
+              "type": "cards",
+              "variant": "stepgrid",
+              "columns": 1,
+              "cards": [
+                {
+                  "id": "step-1-get",
+                  "title": "",
+                  "pros": [
+                    "DTS does the heavy lifting: daily sync and historical backfill",
+                    "We pay only for storage and the queries we run",
+                    "All data is already there: new reports and views need no new extraction",
+                    "The same tables for every client: build once, reuse everywhere"
+                  ],
+                  "prosLabel": "What we get"
+                },
+                {
+                  "id": "step-1-todo",
+                  "title": "",
+                  "todo": [
+                    "A wrapper that manages which accounts sync, and under which conditions",
+                    "A QA suite that catches what goes wrong: lost permissions, failed or late transfers, accounts dropping out",
+                    "A monitor for Google Ads API and schema changes"
+                  ],
+                  "reveal": "collapse"
+                }
+              ]
+            },
+            {
+              "id": "step-1-notes",
+              "type": "image",
+              "visible": false,
+              "src": "assets/media/bq-gads-raw.jpg",
+              "alt": "BigQuery gads_raw dataset with Google Ads transfer tables",
+              "title": "gads_raw in BigQuery: every Google Ads table, synced daily by DTS",
+              "caption": "94 accounts in one config table · freshness gate before every build · alert when an account drops out"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "What we need to do",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "step-1-todo"
+            }
+          ]
+        },
+        {
+          "caption": "From our projects",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "step-1-notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "step-2",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Step 2: Context discovery → the client's semantic library",
+      "blocks": [
+        {
+          "id": "step-2-stepper",
+          "type": "process",
+          "variant": "compact",
+          "compact": true,
+          "active": 2,
+          "steps": [
+            {
+              "title": "Raw data, a step away",
+              "goal": false
+            },
+            {
+              "title": "Context discovery",
+              "goal": false
+            },
+            {
+              "title": "Adapt templates",
+              "goal": false
+            },
+            {
+              "title": "Maintainable pipelines",
+              "goal": false
+            },
+            {
+              "title": "Client feedback loop",
+              "goal": false
+            },
+            {
+              "title": "Full automation",
+              "goal": true
+            }
+          ]
+        },
+        {
+          "id": "step-2-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "Step 2 · Context discovery → the client's semantic library"
+        },
+        {
+          "id": "step-2-lead",
+          "type": "text",
+          "paragraphs": [
+            "A templated discovery turns each client's business into written rules: the semantic library that the ETL applies to the raw data."
+          ]
+        },
+        {
+          "id": "step-2-cards",
+          "type": "cards",
+          "columns": 3,
+          "cards": [
+            {
+              "id": "step-2-get",
+              "title": "",
+              "pros": [
+                "Templates make discovery repeatable, but it still takes business development experience to ask the right questions",
+                "AI speeds discovery up a lot: it checks sources, finds gaps and drafts the questions",
+                "One written source of truth: revenue definition, migration dates, country rules, source precedence"
+              ],
+              "prosLabel": "What we get"
+            },
+            {
+              "id": "step-2-todo",
+              "title": "",
+              "todo": [
+                "Create the discovery templates, and evolve them with every client",
+                "A process that formalises the answers into rules the pipeline can apply",
+                "Keep open questions visible until a human decides"
+              ],
+              "reveal": "collapse"
+            },
+            {
+              "id": "step-2-notes",
+              "title": "",
+              "notes": [
+                "Healthcare client: the first commit was the discovery report, not code",
+                "It listed 9 gaps and 8 decisions for a human",
+                "The answers became CONTRACTS.md, read by the agent before every task"
+              ],
+              "reveal": "collapse"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "What we need to do",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "step-2-todo"
+            }
+          ]
+        },
+        {
+          "caption": "From our projects",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "step-2-notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "step-3",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Step 3: Adapt templates, don't rebuild",
+      "blocks": [
+        {
+          "id": "step-3-stepper",
+          "type": "process",
+          "variant": "compact",
+          "compact": true,
+          "active": 3,
+          "steps": [
+            {
+              "title": "Raw data, a step away",
+              "goal": false
+            },
+            {
+              "title": "Context discovery",
+              "goal": false
+            },
+            {
+              "title": "Adapt templates",
+              "goal": false
+            },
+            {
+              "title": "Maintainable pipelines",
+              "goal": false
+            },
+            {
+              "title": "Client feedback loop",
+              "goal": false
+            },
+            {
+              "title": "Full automation",
+              "goal": true
+            }
+          ]
+        },
+        {
+          "id": "step-3-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "Step 3 · Adapt templates, don't rebuild"
+        },
+        {
+          "id": "step-3-lead",
+          "type": "text",
+          "paragraphs": [
+            "Three kinds of templates, adapted through the semantic library instead of built from scratch."
+          ]
+        },
+        {
+          "id": "step-3-cards",
+          "type": "cards",
+          "columns": 3,
+          "cards": [
+            {
+              "id": "step-3-get",
+              "title": "",
+              "pros": [
+                "Reporting templates: the business questions are finite, after all",
+                "UI templates: for a given set of data, there is a best way to show it",
+                "Learning: every client's feedback improves the templates for the next"
+              ],
+              "prosLabel": "Templates we reuse"
+            },
+            {
+              "id": "step-3-todo",
+              "title": "",
+              "todo": [
+                "An AI-driven build process that applies the formalised discoveries to the raw data",
+                "Feed it past experience, structured as knowledge, tooling, business context and client hierarchy",
+                "QA at every step. Don't skip it."
+              ],
+              "reveal": "collapse"
+            },
+            {
+              "id": "step-3-notes",
+              "title": "",
+              "notes": [
+                "17 shared reporting tables and the report hub, built for the exporter",
+                "Adapted into the healthcare client's dashboard in 2 days"
+              ],
+              "reveal": "collapse"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "What we need to do",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "step-3-todo"
+            }
+          ]
+        },
+        {
+          "caption": "From our projects",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "step-3-notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "step-4",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Step 4: Maintainable pipelines, automated QA, data quality",
+      "blocks": [
+        {
+          "id": "step-4-stepper",
+          "type": "process",
+          "variant": "compact",
+          "compact": true,
+          "active": 4,
+          "steps": [
+            {
+              "title": "Raw data, a step away",
+              "goal": false
+            },
+            {
+              "title": "Context discovery",
+              "goal": false
+            },
+            {
+              "title": "Adapt templates",
+              "goal": false
+            },
+            {
+              "title": "Maintainable pipelines",
+              "goal": false
+            },
+            {
+              "title": "Client feedback loop",
+              "goal": false
+            },
+            {
+              "title": "Full automation",
+              "goal": true
+            }
+          ]
+        },
+        {
+          "id": "step-4-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "Step 4 · Maintainable pipelines, automated QA, data quality"
+        },
+        {
+          "id": "step-4-lead",
+          "type": "text",
+          "paragraphs": [
+            "Bad data in, bad data out. Analysis is easy today; data quality and context are not. This is the most important part of the job."
+          ]
+        },
+        {
+          "id": "step-4-cards",
+          "type": "cards",
+          "columns": 3,
+          "cards": [
+            {
+              "id": "step-4-get",
+              "title": "",
+              "pros": [
+                "Managed cloud services: Cloud Run jobs, Cloud Scheduler, Secret Manager, BigQuery. Your time is the most expensive resource",
+                "Monitoring that comes to you: a Telegram bot reports every run and every failure",
+                "Parse errors and retry only what is worth retrying",
+                "Scheduled AI tasks for holistic QA and pipeline reviews"
+              ],
+              "prosLabel": "How we do it"
+            },
+            {
+              "id": "step-4-todo",
+              "title": "",
+              "todo": [
+                "Publish only after checks pass; on failure, the client keeps the last good data",
+                "Reconcile against the source by account, campaign and day",
+                "Show freshness and coverage on every report; missing is never zero",
+                "Measure cost in bytes, and version every release for one-step rollback"
+              ],
+              "reveal": "collapse"
+            },
+            {
+              "id": "step-4-notes",
+              "title": "",
+              "notes": [
+                "A new coverage test found a 13-day gap in ECB exchange rates",
+                "Reconciliation found a 0.44% cost mismatch in the shared export",
+                "Cost review: $449 → $15 a month"
+              ],
+              "reveal": "collapse"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "What we need to do",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "step-4-todo"
+            }
+          ]
+        },
+        {
+          "caption": "From our projects",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "step-4-notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "step-5",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "Step 5: A feedback loop with the client",
+      "blocks": [
+        {
+          "id": "step-5-stepper",
+          "type": "process",
+          "variant": "compact",
+          "compact": true,
+          "active": 5,
+          "steps": [
+            {
+              "title": "Raw data, a step away",
+              "goal": false
+            },
+            {
+              "title": "Context discovery",
+              "goal": false
+            },
+            {
+              "title": "Adapt templates",
+              "goal": false
+            },
+            {
+              "title": "Maintainable pipelines",
+              "goal": false
+            },
+            {
+              "title": "Client feedback loop",
+              "goal": false
+            },
+            {
+              "title": "Full automation",
+              "goal": true
+            }
+          ]
+        },
+        {
+          "id": "step-5-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "Step 5 · A feedback loop with the client"
+        },
+        {
+          "id": "step-5-lead",
+          "type": "text",
+          "paragraphs": [
+            "The first version is a hypothesis. The client's reaction turns it into a system they trust and use."
+          ]
+        },
+        {
+          "id": "step-5-cards",
+          "type": "cards",
+          "columns": 3,
+          "cards": [
+            {
+              "id": "step-5-get",
+              "title": "",
+              "pros": [
+                "Early previews: the client sees real data within days, not a spec",
+                "Feedback is written back into the semantic library, so it's never lost",
+                "Trust: definitions and data freshness are visible on every report",
+                "Better templates for the next client"
+              ],
+              "prosLabel": "What we get"
+            },
+            {
+              "id": "step-5-todo",
+              "title": "",
+              "todo": [
+                "Short preview cycles with the people who will use the reports",
+                "One channel for feedback, and a record of what changed and why",
+                "Usage signals: which views get opened, which get ignored",
+                "Regular reviews as the business changes: new markets, campaigns, goals"
+              ],
+              "reveal": "collapse"
+            },
+            {
+              "id": "step-5-notes",
+              "title": "",
+              "notes": [
+                "Healthcare client: preview feedback on filters, projections and comparisons applied the same day",
+                "New users added on request",
+                "A later decision made the final legacy export canonical"
+              ],
+              "reveal": "collapse"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "What we need to do",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "step-5-todo"
+            }
+          ]
+        },
+        {
+          "caption": "From our projects",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "step-5-notes"
             }
           ]
         }

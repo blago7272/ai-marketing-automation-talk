@@ -789,6 +789,36 @@ class AIPresentationFramework {
         </div>`;
     }
 
+    if (type === "process") {
+      const steps = block.steps || [];
+      const n = steps.length || 1;
+      const loop = block.loop
+        ? `<div class="process-loop" style="grid-column: ${Number(block.loop.to || 1)} / ${Number(block.loop.from || n) + 1}">
+            <span>↺ ${escapeHTML(block.loop.label || "Feedback loop")}</span>
+          </div>`
+        : "";
+      return `
+        <div ${attrs} style="--process-steps: ${n}">
+          <ol class="process-track">
+            ${steps.map((step, index) => {
+              const stepAttrs = this.blockAttrs(step, step.id || `${id}-step-${index}`, [
+                "process-node",
+                step.goal ? "is-goal" : "",
+                block.active && Number(block.active) === index + 1 ? "is-current" : "",
+                block.active && Number(block.active) > index + 1 ? "is-done" : "",
+              ].join(" "));
+              return `
+              <li ${stepAttrs}>
+                <span class="process-num">${escapeHTML(step.number || (step.goal ? "★" : String(index + 1).padStart(2, "0")))}</span>
+                <strong>${escapeHTML(step.title || "")}</strong>
+                ${step.body && !block.compact ? `<p>${escapeHTML(step.body)}</p>` : ""}
+              </li>`;
+            }).join("")}
+          </ol>
+          ${block.compact ? "" : loop}
+        </div>`;
+    }
+
     if (type === "spacer") {
       return `<div ${attrs} aria-hidden="true"></div>`;
     }
@@ -848,7 +878,7 @@ class AIPresentationFramework {
     return `
       <article ${attrs}>
         ${card.label || card.number ? `<span>${escapeHTML(card.label || card.number)}</span>` : ""}
-        <strong>${escapeHTML(card.title || "")}</strong>
+        ${card.title ? `<strong>${escapeHTML(card.title)}</strong>` : ""}
         ${card.body ? `<p>${escapeHTML(card.body)}</p>` : ""}
         ${this.renderProsCons(card)}
       </article>`;
@@ -861,7 +891,10 @@ class AIPresentationFramework {
           <ul>${items.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
         </div>`
       : "";
-    return group(card.pros, "pro", card.prosLabel || "Good for") + group(card.cons, "con", card.consLabel || "Breaks");
+    return group(card.pros, "pro", card.prosLabel || "Good for")
+      + group(card.cons, "con", card.consLabel || "Breaks")
+      + group(card.todo, "todo", card.todoLabel || "What we need to do")
+      + group(card.notes, "note", card.notesLabel || "From our projects");
   }
 
   renderArtifactCard(artifact = {}, index = 0) {
