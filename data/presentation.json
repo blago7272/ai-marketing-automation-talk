@@ -911,6 +911,144 @@
       ]
     },
     {
+      "id": "ex-1",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "In practice: Step 1",
+      "blocks": [
+        {
+          "id": "ex-1-stepper",
+          "type": "process",
+          "variant": "compact",
+          "compact": true,
+          "active": 1,
+          "steps": [
+            {
+              "title": "Raw data, a step away",
+              "goal": false
+            },
+            {
+              "title": "Context discovery",
+              "goal": false
+            },
+            {
+              "title": "Adapt templates",
+              "goal": false
+            },
+            {
+              "title": "Maintainable pipelines",
+              "goal": false
+            },
+            {
+              "title": "Client feedback loop",
+              "goal": false
+            },
+            {
+              "title": "Full automation",
+              "goal": true
+            }
+          ]
+        },
+        {
+          "id": "ex-1-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "In practice: exports first, connectors for the gaps"
+        },
+        {
+          "id": "ex-1-lead",
+          "type": "text",
+          "paragraphs": [
+            "The wrapper around DTS: one Cloud Run job, started by Cloud Scheduler every day. It stops at the first failed check."
+          ]
+        },
+        {
+          "id": "ex-1-run",
+          "type": "process",
+          "variant": "compact",
+          "className": "is-flow",
+          "compact": true,
+          "steps": [
+            {
+              "title": "Freshness gate"
+            },
+            {
+              "title": "Drop-out alert"
+            },
+            {
+              "title": "ECB rates"
+            },
+            {
+              "title": "dbt build"
+            },
+            {
+              "title": "dbt test"
+            },
+            {
+              "title": "Telegram summary"
+            }
+          ]
+        },
+        {
+          "id": "ex-1-cards",
+          "type": "cards",
+          "columns": 3,
+          "cards": [
+            {
+              "id": "ex-1-base",
+              "pros": [
+                "Google Ads DTS syncs every account into BigQuery daily",
+                "94 accounts in one config table; stale accounts are excluded, not silently dropped",
+                "Telegram summary only after a green release"
+              ],
+              "prosLabel": "The foundation: DTS export"
+            },
+            {
+              "id": "ex-1-gap",
+              "reveal": "collapse",
+              "cons": [
+                "The export's geo table has no Performance Max rows",
+                "On a sample day, ~2/3 of one client's spend had no country",
+                "Allocating it by campaign name would be a guess"
+              ],
+              "consLabel": "The gap we found"
+            },
+            {
+              "id": "ex-1-fix",
+              "reveal": "collapse",
+              "todo": [
+                "Official Google Ads MCP, read-only, fixed account",
+                "Results hitting the 50,000-row cap are rejected",
+                "Reconciled per campaign and day; 0.007% unallocated, labelled Unknown"
+              ],
+              "todoLabel": "The fix: a connector under contract"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "The gap",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-1-gap"
+            }
+          ]
+        },
+        {
+          "caption": "The fix",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-1-fix"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "step-2",
       "type": "compose",
       "background": "dense",
@@ -1023,6 +1161,14 @@
       ]
     },
     {
+      "id": "ex-2",
+      "type": "ai-demo",
+      "background": "focus",
+      "title": "In practice: discovery",
+      "body": "From the healthcare client's repo: the agent's questions, the answers, and the rules they became.",
+      "transcript": "data/transcripts/discovery.json"
+    },
+    {
       "id": "step-3",
       "type": "compose",
       "background": "dense",
@@ -1128,6 +1274,118 @@
             {
               "type": "showBlock",
               "target": "step-3-notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-3",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "In practice: Step 3",
+      "blocks": [
+        {
+          "id": "ex-3-stepper",
+          "type": "process",
+          "variant": "compact",
+          "compact": true,
+          "active": 3,
+          "steps": [
+            {
+              "title": "Raw data, a step away",
+              "goal": false
+            },
+            {
+              "title": "Context discovery",
+              "goal": false
+            },
+            {
+              "title": "Adapt templates",
+              "goal": false
+            },
+            {
+              "title": "Maintainable pipelines",
+              "goal": false
+            },
+            {
+              "title": "Client feedback loop",
+              "goal": false
+            },
+            {
+              "title": "Full automation",
+              "goal": true
+            }
+          ]
+        },
+        {
+          "id": "ex-3-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "In practice: shared template + client rules = the client's report"
+        },
+        {
+          "id": "ex-3-lead",
+          "type": "text",
+          "paragraphs": [
+            "One view from the healthcare client's dashboard, \"Google Ads by country\", and where each part came from."
+          ]
+        },
+        {
+          "id": "ex-3-cards",
+          "type": "cards",
+          "columns": 3,
+          "cards": [
+            {
+              "id": "ex-3-tpl",
+              "pros": [
+                "Shared Ads reporting tables from the exporter",
+                "The report hub and page layout from an earlier client",
+                "Standard metrics: impressions, clicks, cost, conversions, value"
+              ],
+              "prosLabel": "From the templates"
+            },
+            {
+              "id": "ex-3-rules",
+              "reveal": "collapse",
+              "todo": [
+                "Drill-down: country → campaign → month",
+                "ROAS = summed value ÷ summed cost; unavailable when cost is zero",
+                "Projected month shown only when the month is complete from day 1 and reconciled",
+                "Campaigns grouped by account + campaign ID, even when names match"
+              ],
+              "todoLabel": "From the client's semantic library"
+            },
+            {
+              "id": "ex-3-result",
+              "reveal": "collapse",
+              "notes": [
+                "Protected dashboard live on day 1, refined on day 2",
+                "Rules live in CONTRACTS.md, read by the agent before every change",
+                "The next client starts from the same templates"
+              ],
+              "notesLabel": "The result"
+            }
+          ]
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "Client rules",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-3-rules"
+            }
+          ]
+        },
+        {
+          "caption": "The result",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "ex-3-result"
             }
           ]
         }
@@ -1248,6 +1506,14 @@
       ]
     },
     {
+      "id": "ex-4",
+      "type": "ai-demo",
+      "background": "focus",
+      "title": "In practice: keeping it cheap and correct",
+      "body": "From the exporter's repo: the agent measures, proves nothing is lost, and a new test finds an old bug.",
+      "transcript": "data/transcripts/gads-cost-optimization.json"
+    },
+    {
       "id": "step-5",
       "type": "compose",
       "background": "dense",
@@ -1356,6 +1622,98 @@
             {
               "type": "showBlock",
               "target": "step-5-notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-5",
+      "type": "compose",
+      "background": "dense",
+      "layout": "stack",
+      "title": "In practice: Step 5",
+      "blocks": [
+        {
+          "id": "ex-5-stepper",
+          "type": "process",
+          "variant": "compact",
+          "compact": true,
+          "active": 5,
+          "steps": [
+            {
+              "title": "Raw data, a step away",
+              "goal": false
+            },
+            {
+              "title": "Context discovery",
+              "goal": false
+            },
+            {
+              "title": "Adapt templates",
+              "goal": false
+            },
+            {
+              "title": "Maintainable pipelines",
+              "goal": false
+            },
+            {
+              "title": "Client feedback loop",
+              "goal": false
+            },
+            {
+              "title": "Full automation",
+              "goal": true
+            }
+          ]
+        },
+        {
+          "id": "ex-5-title",
+          "type": "heading",
+          "variant": "step",
+          "text": "In practice: two days of feedback, from the commit log"
+        },
+        {
+          "id": "ex-5-lead",
+          "type": "text",
+          "paragraphs": [
+            "The healthcare client's dashboard after its first preview. Each change is a commit, so the history of every decision is kept."
+          ]
+        },
+        {
+          "id": "ex-5-tl",
+          "type": "timeline",
+          "columns": 4,
+          "items": [
+            {
+              "label": "Day 1 · 13:38",
+              "title": "First protected preview",
+              "body": "Dashboard live behind Google login."
+            },
+            {
+              "label": "Day 1 · 14:20",
+              "title": "Preview feedback applied",
+              "body": "Filters, projections, comparisons, source explanations."
+            },
+            {
+              "label": "Day 2 · 09:29",
+              "title": "Refined ROAS and ranking",
+              "body": "Revenue ranking and country AOV added."
+            },
+            {
+              "label": "Day 2 · 10:06",
+              "title": "Source decision",
+              "body": "Final legacy Ads export confirmed as canonical."
+            },
+            {
+              "label": "Day 2 · 11:11",
+              "title": "Ads ROAS by country",
+              "body": "Plus a top-20 country view."
+            },
+            {
+              "label": "Day 2 · 11:33",
+              "title": "Client access",
+              "body": "Two client users given access."
             }
           ]
         }

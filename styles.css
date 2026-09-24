@@ -4971,3 +4971,6 @@ body[data-contrast-theme="light"] .attachment-body pre {
 .block-grid.is-stepgrid,
 .block-cards.is-stepgrid { align-items: start; }
 .block-grid.is-stepgrid .block-image img { max-height: 34vh; }
+
+/* Full-opacity compact flow (e.g. a daily run sequence) */
+.block-process.is-compact.is-flow .process-node { opacity: 1; }

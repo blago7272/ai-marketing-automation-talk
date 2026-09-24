@@ -1,0 +1,204 @@
+{
+  "id": "discovery",
+  "title": "Discovery: from gaps to rules",
+  "assistantName": "Codex",
+  "context": "Condensed from the healthcare client's repo: docs/discovery (22 Sep), docs/decisions and AGENTS.md. Questions and answers are quoted from those files, shortened; identifiers removed.",
+  "metrics": [
+    {
+      "value": "9",
+      "label": "gaps found"
+    },
+    {
+      "value": "8",
+      "label": "questions for a human"
+    },
+    {
+      "value": "0",
+      "label": "lines of code before answers"
+    }
+  ],
+  "messages": [
+    {
+      "id": "d01",
+      "role": "user",
+      "name": "Brief",
+      "text": "Daily dashboard combining commerce, Google Ads and GA4. Discovery and clarification before implementation.",
+      "compact": {
+        "label": "Brief",
+        "title": "Discovery first",
+        "summary": "Daily dashboard combining commerce, Google Ads and GA4. Discovery and clarification before implementation."
+      }
+    },
+    {
+      "id": "d02",
+      "role": "tool",
+      "name": "BigQuery · Sheets · Git",
+      "text": "Read-only inspection: schemas, bounded aggregates, scheduler metadata, failure logs.",
+      "compact": {
+        "label": "Discovery",
+        "title": "What was checked",
+        "summary": "Nothing was changed.",
+        "items": [
+          "GA4 export: 231 daily tables",
+          "Ads reporting mart: 8,533 campaign/day rows",
+          "Legacy workbook: 12 tabs",
+          "8 reference repos, read-only"
+        ]
+      }
+    },
+    {
+      "id": "d03",
+      "role": "assistant",
+      "name": "Codex",
+      "text": "Discovery establishes viable sources but does not certify full historical completeness.",
+      "compact": {
+        "title": "9 gaps and risks",
+        "summary": "Found before any code was written.",
+        "items": [
+          "Shopify authorization broken (HTTP 401)",
+          "Order extraction omits country",
+          "Ads geography misses Performance Max",
+          "Missing prior-year periods must show unavailable, not zero"
+        ]
+      },
+      "attachments": [
+        {
+          "title": "discovery-report.md",
+          "type": "Doc",
+          "path": "assets/attachments/client-discovery-excerpt.md"
+        }
+      ]
+    },
+    {
+      "id": "d04",
+      "role": "assistant",
+      "name": "Codex",
+      "text": "These are definition/access questions, not a request to approve unfinished implementation.",
+      "compact": {
+        "title": "8 decisions for a human",
+        "summary": "Quoted from the report, shortened.",
+        "items": [
+          "Revenue contract: net merchandise or order total? VAT, shipping, refunds by order or refund date?",
+          "Migration boundary: the authoritative Woo → Shopify cutover date?",
+          "Country rule: shipping → billing → Unknown for commerce; user location for Ads?",
+          "Access: which Google accounts may see the report?"
+        ]
+      },
+      "tooltip": {
+        "title": "The agent stops and asks",
+        "body": "Business definitions are not guessed. They go to a human.",
+        "placement": "left"
+      }
+    },
+    {
+      "id": "d05",
+      "role": "user",
+      "name": "Decisions",
+      "text": "Both net merchandise revenue and order total. Shopify from 29 April 2026. Payment received only, no test orders. Refunds on the original order date. Google-account allowlist.",
+      "compact": {
+        "label": "Decisions",
+        "title": "The answers",
+        "summary": "Recorded in docs/decisions.md on the same day.",
+        "items": [
+          "Both net merchandise revenue and order total",
+          "Shopify from 29 April 2026",
+          "Paid orders only, no test orders",
+          "Refunds belong to the original order date"
+        ]
+      }
+    },
+    {
+      "id": "d06",
+      "role": "tool",
+      "name": "Git",
+      "text": "The answers became rules in AGENTS.md and CONTRACTS.md.",
+      "compact": {
+        "label": "Semantic library",
+        "title": "Rules the agent reads before every task",
+        "summary": "Quoted from AGENTS.md.",
+        "items": [
+          "Never add Shopify revenue to Google Ads or GA4 attributed revenue",
+          "Resolve campaigns by account and campaign ID, not names",
+          "Missing data is not zero",
+          "Report freshness and coverage explicitly"
+        ]
+      },
+      "attachments": [
+        {
+          "title": "AGENTS.md",
+          "type": "Doc",
+          "path": "assets/attachments/client-agents.md"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "caption": "The brief: discovery before implementation.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "d01"
+        }
+      ]
+    },
+    {
+      "caption": "The agent checks the sources, read-only.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "d02"
+        }
+      ]
+    },
+    {
+      "caption": "It reports the gaps it found.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "d03"
+        }
+      ]
+    },
+    {
+      "caption": "And stops with questions only a human can answer.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "d04",
+          "showTooltip": true
+        }
+      ]
+    },
+    {
+      "caption": "The answers are recorded.",
+      "actions": [
+        {
+          "type": "clearTooltip"
+        },
+        {
+          "type": "appendMessage",
+          "messageId": "d05"
+        }
+      ]
+    },
+    {
+      "caption": "They become the client's semantic library.",
+      "actions": [
+        {
+          "type": "appendMessage",
+          "messageId": "d06"
+        }
+      ]
+    },
+    {
+      "caption": "Open the rules.",
+      "actions": [
+        {
+          "type": "openArtifact",
+          "path": "assets/attachments/client-agents.md"
+        }
+      ]
+    }
+  ]
+}
