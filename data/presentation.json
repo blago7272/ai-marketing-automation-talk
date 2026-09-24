@@ -263,7 +263,8 @@
               "id": "ladder-5",
               "reveal": "collapse"
             }
-          ]
+          ],
+          "variant": "ladder"
         }
       ],
       "revealSteps": [
@@ -319,12 +320,12 @@
       "type": "compose",
       "background": "focus",
       "layout": "stack",
-      "title": "AI builds the tools",
+      "title": "Can we build the tools we were missing?",
       "blocks": [
         {
           "id": "promise-title",
           "type": "heading",
-          "text": "AI can build the tools we were missing"
+          "text": "Can we build the tools we were missing?"
         },
         {
           "id": "promise-lead",
@@ -1802,42 +1803,48 @@
               "title": "Operating rules",
               "body": "What to read first, what never to touch, where to deploy. \"Do not modify any reference repository.\"",
               "id": "sc-1",
-              "reveal": "collapse"
+              "reveal": "collapse",
+              "path": "assets/attachments/client-agents.md"
             },
             {
               "label": "docs/discovery",
               "title": "What we found",
               "body": "What was checked, what is missing, and the questions for a human.",
               "id": "sc-2",
-              "reveal": "collapse"
+              "reveal": "collapse",
+              "path": "assets/attachments/client-discovery-excerpt.md"
             },
             {
               "label": "docs/decisions.md",
               "title": "What was decided",
               "body": "The answers, with dates. They supersede provisional notes.",
               "id": "sc-3",
-              "reveal": "collapse"
+              "reveal": "collapse",
+              "path": "assets/attachments/client-decisions-excerpt.md"
             },
             {
               "label": "docs/CONTRACTS.md",
               "title": "Rules to follow",
               "body": "Revenue, source precedence, IDs, currency, access. Read before every change.",
               "id": "sc-4",
-              "reveal": "collapse"
+              "reveal": "collapse",
+              "path": "assets/attachments/client-contracts-excerpt.md"
             },
             {
               "label": "Runbooks",
               "title": "How to operate",
               "body": "Deploy, backfill, recover. E.g. the FX backfill and the Ads import runbook.",
               "id": "sc-5",
-              "reveal": "collapse"
+              "reveal": "collapse",
+              "path": "assets/attachments/gads-runbook-excerpt.md"
             },
             {
               "label": "Commit history",
               "title": "Why it changed",
               "body": "One change, one commit, one reason: the timeline of every decision.",
               "id": "sc-6",
-              "reveal": "collapse"
+              "reveal": "collapse",
+              "path": "assets/attachments/client-commit-history.md"
             }
           ]
         },
@@ -1912,57 +1919,6 @@
               "target": "sc-rule"
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "scaffolding-examples",
-      "type": "artifact-gallery",
-      "background": "dense",
-      "title": "Scaffolding in the real repos",
-      "body": "Click any file to open a shortened, anonymised excerpt of the real thing.",
-      "artifacts": [
-        {
-          "title": "AGENTS.md",
-          "type": "Operating rules",
-          "path": "assets/attachments/client-agents.md",
-          "body": "The rules the agent reads first, every session.",
-          "meta": "Healthcare client"
-        },
-        {
-          "title": "Discovery report",
-          "type": "docs/discovery",
-          "path": "assets/attachments/client-discovery-excerpt.md",
-          "body": "9 gaps and 8 questions, before any code.",
-          "meta": "Healthcare client"
-        },
-        {
-          "title": "Decisions",
-          "type": "docs/decisions.md",
-          "path": "assets/attachments/client-decisions-excerpt.md",
-          "body": "The answers, dated. They supersede the open questions.",
-          "meta": "Healthcare client"
-        },
-        {
-          "title": "Contracts",
-          "type": "docs/CONTRACTS.md",
-          "path": "assets/attachments/client-contracts-excerpt.md",
-          "body": "Campaign identity, ROAS, projections, access.",
-          "meta": "Healthcare client"
-        },
-        {
-          "title": "Runbooks",
-          "type": "Operations",
-          "path": "assets/attachments/gads-runbook-excerpt.md",
-          "body": "FX backfill, Ads import, release orchestrator.",
-          "meta": "Exporter + client"
-        },
-        {
-          "title": "Commit history",
-          "type": "git log",
-          "path": "assets/attachments/client-commit-history.md",
-          "body": "19 commits in 2 days, one reason each.",
-          "meta": "Healthcare client"
         }
       ]
     },
@@ -2556,107 +2512,6 @@
           "Whether to trade a safety stage for a 50% lower bill"
         ]
       }
-    },
-    {
-      "id": "playbook",
-      "type": "playbook",
-      "background": "focus",
-      "title": "Playbook",
-      "body": "The same order for every new client.",
-      "steps": [
-        {
-          "title": "Discovery",
-          "body": "The agent checks the sources and records what is proven and what isn't.",
-          "id": "pb-1",
-          "reveal": "collapse"
-        },
-        {
-          "title": "Decisions",
-          "body": "A human answers the open questions, and the answers become a contract in the repo.",
-          "id": "pb-2",
-          "reveal": "collapse"
-        },
-        {
-          "title": "Build on the shared layer",
-          "body": "Specifics go into config; the shared layer stays untouched.",
-          "id": "pb-3",
-          "reveal": "collapse"
-        },
-        {
-          "title": "Prove it",
-          "body": "Tests, reconciliation and A/B checks against the old source.",
-          "id": "pb-4",
-          "reveal": "collapse"
-        },
-        {
-          "title": "Schedule it",
-          "body": "A Cloud Run job and Scheduler, publishing only if the checks pass.",
-          "id": "pb-5",
-          "reveal": "collapse"
-        },
-        {
-          "title": "Extract",
-          "body": "Anything that repeats goes back into the tools and the knowledge.",
-          "id": "pb-6",
-          "reveal": "collapse"
-        }
-      ],
-      "revealSteps": [
-        {
-          "caption": "pb-1",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "pb-1"
-            }
-          ]
-        },
-        {
-          "caption": "pb-2",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "pb-2"
-            }
-          ]
-        },
-        {
-          "caption": "pb-3",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "pb-3"
-            }
-          ]
-        },
-        {
-          "caption": "pb-4",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "pb-4"
-            }
-          ]
-        },
-        {
-          "caption": "pb-5",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "pb-5"
-            }
-          ]
-        },
-        {
-          "caption": "pb-6",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "pb-6"
-            }
-          ]
-        }
-      ]
     },
     {
       "id": "thank-you",

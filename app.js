@@ -883,13 +883,17 @@ class AIPresentationFramework {
   }
 
   renderCardBlock(card = {}, fallbackId) {
-    const attrs = this.blockAttrs(card, card.id || fallbackId, "compose-card");
+    const openable = card.path
+      ? ` data-attachment-path="${escapeAttribute(card.path)}" data-attachment-title="${escapeAttribute(card.pathTitle || card.label || card.title || "")}" data-attachment-type="${escapeAttribute(card.pathType || "Excerpt")}" role="button" tabindex="0"`
+      : "";
+    const attrs = this.blockAttrs(card, card.id || fallbackId, `compose-card${card.path ? " is-openable" : ""}`) + openable;
     return `
       <article ${attrs}>
         ${card.label || card.number ? `<span>${escapeHTML(card.label || card.number)}</span>` : ""}
         ${card.title ? `<strong>${escapeHTML(card.title)}</strong>` : ""}
         ${card.body ? `<p>${escapeHTML(card.body)}</p>` : ""}
         ${this.renderProsCons(card)}
+        ${card.path ? `<em class="card-open-hint">${escapeHTML(card.openLabel || "Open the real file")} ↗</em>` : ""}
       </article>`;
   }
 

@@ -5015,3 +5015,48 @@ body[data-contrast-theme="light"] .attachment-body pre {
 .block-link-button:hover,
 .block-link-button:focus-visible { background: var(--accent-2); outline: none; }
 .block-link-caption { color: var(--muted); font-size: 0.92rem; }
+
+/* Openable cards (open a real excerpt in the drawer) */
+.compose-card.is-openable {
+  position: relative;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+.compose-card.is-openable::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 26px;
+  height: 32px;
+  border: 1px solid rgba(226, 255, 250, 0.32);
+  border-radius: 5px;
+  background:
+    linear-gradient(135deg, transparent 0 70%, rgba(255, 194, 102, 0.5) 71%),
+    linear-gradient(180deg, rgba(93, 255, 240, 0.18), rgba(255, 255, 255, 0.04));
+}
+.compose-card.is-openable:hover,
+.compose-card.is-openable:focus-visible {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  outline: none;
+}
+.compose-card .card-open-hint {
+  margin-top: auto;
+  color: var(--accent);
+  font-style: normal;
+  font-size: 0.8rem;
+  font-weight: 760;
+}
+
+/* Ladder: titles reserve two lines and boxes align across cards */
+.block-cards.is-ladder > .compose-card {
+  grid-row: span 4;
+  display: grid;
+  grid-template-rows: subgrid;
+  row-gap: 9px;
+}
+.block-cards.is-ladder > .compose-card strong { min-height: 2.36em; }
+.block-cards.is-ladder > .compose-card .card-procon { align-self: start; }
+.block-cards.is-ladder > .compose-card .card-procon.is-pro { align-self: stretch; }
+.compose-card .card-procon { align-content: start; }
