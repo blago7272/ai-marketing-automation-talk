@@ -1504,194 +1504,64 @@
       ]
     },
     {
-      "id": "ex-5",
+      "id": "client-timeline",
       "type": "compose",
       "background": "dense",
       "layout": "stack",
-      "title": "In practice: Step 5",
+      "title": "Two days, 19 commits",
       "blocks": [
         {
-          "id": "ex-5-stepper",
-          "type": "process",
-          "variant": "compact",
-          "compact": true,
-          "active": 5,
-          "steps": [
-            {
-              "title": "Raw data, a step away",
-              "goal": false
-            },
-            {
-              "title": "Context discovery",
-              "goal": false
-            },
-            {
-              "title": "Adapt templates",
-              "goal": false
-            },
-            {
-              "title": "Maintainable pipelines",
-              "goal": false
-            },
-            {
-              "title": "Client feedback loop",
-              "goal": false
-            },
-            {
-              "title": "Full automation",
-              "goal": true
-            }
-          ]
-        },
-        {
-          "id": "ex-5-title",
+          "id": "client-tl-title",
           "type": "heading",
-          "variant": "step",
-          "text": "In practice: two days, five feedback rounds"
+          "text": "Two days, 19 commits"
         },
         {
-          "id": "ex-5-lead",
-          "type": "text",
-          "paragraphs": [
-            "The healthcare client's dashboard after its first preview, from the project log. Each round: feedback → change → tests → deploy."
+          "id": "client-tl",
+          "type": "timeline",
+          "items": [
+            {
+              "label": "Day 1 · 11:50",
+              "title": "Discovery",
+              "body": "Sources checked, gaps listed, 8 questions for me before any code."
+            },
+            {
+              "label": "12:43",
+              "title": "Shopify pipeline",
+              "body": "4,894 orders, daily refresh, 72-hour overlap."
+            },
+            {
+              "label": "13:38",
+              "title": "Dashboard",
+              "body": "Cloud Run, IAP, custom domain and spreadsheet history."
+            },
+            {
+              "label": "Day 2 · 09:15",
+              "title": "MCP supplement",
+              "body": "Countries for Performance Max via the Google Ads MCP."
+            },
+            {
+              "label": "10:06",
+              "title": "Contracts",
+              "body": "The final legacy export becomes canonical and is recorded in CONTRACTS.md."
+            }
           ]
         },
         {
-          "id": "ex-5-flow",
-          "type": "process",
-          "steps": [
-            {
-              "number": "D1",
-              "title": "13:38 · First preview",
-              "body": "Protected dashboard behind Google sign-in.",
-              "id": "ex-5-n1"
-            },
-            {
-              "number": "R1",
-              "title": "14:20 · Round 1",
-              "body": "5 requested changes applied, tested, deployed: 42 min after the preview.",
-              "id": "ex-5-n2",
-              "visible": false
-            },
-            {
-              "number": "R2",
-              "title": "14:48 · Round 2",
-              "body": "Hover tooltips; projection drawn as an outline.",
-              "id": "ex-5-n3",
-              "visible": false
-            },
-            {
-              "number": "R3",
-              "title": "15:53 · Round 3",
-              "body": "Monthly KPI selector and country charts. The agent flags that ROAS isn't additive.",
-              "id": "ex-5-n4",
-              "visible": false
-            },
-            {
-              "number": "R4",
-              "title": "Day 2 · 09:29",
-              "body": "ROAS to 2 decimals, revenue ranking, AOV instead of a redundant column.",
-              "id": "ex-5-n5",
-              "visible": false
-            },
-            {
-              "number": "R5",
-              "title": "Day 2 · 10:06–11:33",
-              "body": "Legacy export approved as canonical; drill-downs; client access.",
-              "goal": true,
-              "id": "ex-5-n6",
-              "visible": false
-            }
-          ],
-          "loop": {
-            "from": 6,
-            "to": 2,
-            "label": "Each round is written back into the semantic library"
-          }
-        },
-        {
-          "id": "ex-5-kinds",
-          "type": "cards",
-          "columns": 3,
+          "id": "client-tl-note",
+          "type": "callout",
           "reveal": "collapse",
-          "cards": [
-            {
-              "id": "ex-5-k1",
-              "pros": [
-                "Colours, ranking, labels, chart types"
-              ],
-              "prosLabel": "What the client changed"
-            },
-            {
-              "id": "ex-5-k2",
-              "todo": [
-                "A missing export, requested instead of invented",
-                "A misleading ROAS stack, explained and relabelled"
-              ],
-              "todoLabel": "What the agent raised"
-            },
-            {
-              "id": "ex-5-k3",
-              "notes": [
-                "Source precedence, access, desktop first"
-              ],
-              "notesLabel": "What a human decided"
-            }
-          ]
+          "label": "Key point",
+          "title": "The first commit is a document, not code",
+          "body": "The discovery report lists what was checked, what wasn't, and which decisions belong to a human."
         }
       ],
       "revealSteps": [
         {
-          "caption": "Round 1",
+          "caption": "The first commit",
           "actions": [
             {
               "type": "showBlock",
-              "target": "ex-5-n2"
-            }
-          ]
-        },
-        {
-          "caption": "Round 2",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "ex-5-n3"
-            }
-          ]
-        },
-        {
-          "caption": "Round 3",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "ex-5-n4"
-            }
-          ]
-        },
-        {
-          "caption": "Day 2 refinement",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "ex-5-n5"
-            }
-          ]
-        },
-        {
-          "caption": "Decisions and access",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "ex-5-n6"
-            }
-          ]
-        },
-        {
-          "caption": "Who drove each change",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "ex-5-kinds"
+              "target": "client-tl-note"
             }
           ]
         }
@@ -2046,6 +1916,57 @@
       ]
     },
     {
+      "id": "scaffolding-examples",
+      "type": "artifact-gallery",
+      "background": "dense",
+      "title": "Scaffolding in the real repos",
+      "body": "Click any file to open a shortened, anonymised excerpt of the real thing.",
+      "artifacts": [
+        {
+          "title": "AGENTS.md",
+          "type": "Operating rules",
+          "path": "assets/attachments/client-agents.md",
+          "body": "The rules the agent reads first, every session.",
+          "meta": "Healthcare client"
+        },
+        {
+          "title": "Discovery report",
+          "type": "docs/discovery",
+          "path": "assets/attachments/client-discovery-excerpt.md",
+          "body": "9 gaps and 8 questions, before any code.",
+          "meta": "Healthcare client"
+        },
+        {
+          "title": "Decisions",
+          "type": "docs/decisions.md",
+          "path": "assets/attachments/client-decisions-excerpt.md",
+          "body": "The answers, dated. They supersede the open questions.",
+          "meta": "Healthcare client"
+        },
+        {
+          "title": "Contracts",
+          "type": "docs/CONTRACTS.md",
+          "path": "assets/attachments/client-contracts-excerpt.md",
+          "body": "Campaign identity, ROAS, projections, access.",
+          "meta": "Healthcare client"
+        },
+        {
+          "title": "Runbooks",
+          "type": "Operations",
+          "path": "assets/attachments/gads-runbook-excerpt.md",
+          "body": "FX backfill, Ads import, release orchestrator.",
+          "meta": "Exporter + client"
+        },
+        {
+          "title": "Commit history",
+          "type": "git log",
+          "path": "assets/attachments/client-commit-history.md",
+          "body": "19 commits in 2 days, one reason each.",
+          "meta": "Healthcare client"
+        }
+      ]
+    },
+    {
       "id": "why-repos",
       "type": "compose",
       "background": "dense",
@@ -2215,22 +2136,22 @@
             },
             {
               "number": "02",
-              "title": "References are read-only",
-              "body": "Copy patterns into the new repo; never edit a working system.",
+              "title": "Link layers, don't fork them",
+              "body": "Client repos read shared knowledge, tooling and business cases. Improvements go back to the shared layer, not into a copy.",
               "id": "tp-2",
               "reveal": "collapse"
             },
             {
               "number": "03",
-              "title": "Never weaken a check",
-              "body": "Inspect failures before retrying. Don't turn missing data into zeros to pass.",
+              "title": "Measure before optimising",
+              "body": "Billed bytes, row counts, run times. Then change one thing.",
               "id": "tp-3",
               "reveal": "collapse"
             },
             {
               "number": "04",
-              "title": "Measure before optimising",
-              "body": "Billed bytes, row counts, run times. Then change one thing.",
+              "title": "Keep humans on definitions",
+              "body": "Revenue, attribution, access: a person decides, the agent records.",
               "id": "tp-4",
               "reveal": "collapse"
             },
@@ -2250,15 +2171,15 @@
             },
             {
               "number": "07",
-              "title": "Check it like a user",
-              "body": "Open the report in a browser, not only the tests.",
+              "title": "Make every run idempotent",
+              "body": "A rerun replaces the same dates, never appends. Rolling windows pick up late conversions.",
               "id": "tp-7",
               "reveal": "collapse"
             },
             {
               "number": "08",
-              "title": "Keep humans on definitions",
-              "body": "Revenue, attribution, access: a person decides, the agent records.",
+              "title": "Check it like a user",
+              "body": "Open the report in a browser, not only the tests.",
               "id": "tp-8",
               "reveal": "collapse"
             }
@@ -2276,7 +2197,7 @@
           ]
         },
         {
-          "caption": "References are read-only",
+          "caption": "Link layers, don't fork them",
           "actions": [
             {
               "type": "showBlock",
@@ -2285,7 +2206,7 @@
           ]
         },
         {
-          "caption": "Never weaken a check",
+          "caption": "Measure before optimising",
           "actions": [
             {
               "type": "showBlock",
@@ -2294,7 +2215,7 @@
           ]
         },
         {
-          "caption": "Measure before optimising",
+          "caption": "Keep humans on definitions",
           "actions": [
             {
               "type": "showBlock",
@@ -2321,7 +2242,7 @@
           ]
         },
         {
-          "caption": "Check it like a user",
+          "caption": "Make every run idempotent",
           "actions": [
             {
               "type": "showBlock",
@@ -2330,7 +2251,7 @@
           ]
         },
         {
-          "caption": "Keep humans on definitions",
+          "caption": "Check it like a user",
           "actions": [
             {
               "type": "showBlock",
@@ -2342,11 +2263,49 @@
     },
     {
       "id": "section-gads",
-      "type": "text",
+      "type": "compose",
       "background": "calm",
+      "layout": "stack",
       "title": "Project 1: Google Ads exporter",
-      "paragraphs": [
-        "gads-export-all: one shared reporting model for all of the agency's clients."
+      "blocks": [
+        {
+          "id": "section-gads-title",
+          "type": "heading",
+          "text": "Project 1: Google Ads exporter"
+        },
+        {
+          "id": "section-gads-lead",
+          "type": "text",
+          "paragraphs": [
+            "One shared reporting model for all of the agency's Google Ads accounts. Let's look at it live."
+          ]
+        },
+        {
+          "id": "section-gads-metrics",
+          "type": "metrics",
+          "columns": 3,
+          "items": [
+            {
+              "value": "39",
+              "label": "active accounts"
+            },
+            {
+              "value": "17",
+              "label": "shared reporting tables"
+            },
+            {
+              "value": "$15",
+              "label": "a month to build daily"
+            }
+          ]
+        },
+        {
+          "id": "section-gads-link",
+          "type": "link",
+          "label": "Open it live",
+          "href": "https://reporting.idconsult.bg",
+          "caption": "Opens the live reporting hub (Google sign-in)"
+        }
       ]
     },
     {
@@ -2438,113 +2397,50 @@
       ]
     },
     {
-      "id": "gads-architecture",
+      "id": "section-client",
       "type": "compose",
-      "background": "dense",
+      "background": "calm",
       "layout": "stack",
-      "title": "Architecture",
+      "title": "Project 2: Client from the healthcare industry",
       "blocks": [
         {
-          "id": "arch-title",
+          "id": "section-client-title",
           "type": "heading",
-          "text": "Layers instead of scenarios"
+          "text": "Project 2: Client from the healthcare industry"
         },
         {
-          "id": "arch-timeline",
-          "type": "timeline",
+          "id": "section-client-lead",
+          "type": "text",
+          "paragraphs": [
+            "Commerce, Google Ads and GA4 in one protected dashboard, built on top of the exporter. Let's look at it live."
+          ]
+        },
+        {
+          "id": "section-client-metrics",
+          "type": "metrics",
+          "columns": 3,
           "items": [
             {
-              "label": "raw",
-              "title": "gads_raw",
-              "body": "Google Ads DTS export. Read-only."
+              "value": "5",
+              "label": "data sources"
             },
             {
-              "label": "cfg",
-              "title": "Configuration",
-              "body": "Accounts, thresholds, groups, ECB exchange rates."
+              "value": "2 days",
+              "label": "to production"
             },
             {
-              "label": "stg",
-              "title": "Standardisation",
-              "body": "17 staging models that normalise the sources."
-            },
-            {
-              "label": "mart",
-              "title": "Reporting logic",
-              "body": "17 marts, each with client_id, account_id and report_date."
-            },
-            {
-              "label": "app",
-              "title": "Delivery",
-              "body": "FastAPI reports with Google login, plus a Telegram bot."
+              "value": "0.007%",
+              "label": "unallocated Ads spend"
             }
           ]
         },
         {
-          "id": "arch-orchestrator",
-          "type": "callout",
-          "reveal": "collapse",
-          "label": "Orchestration",
-          "title": "One Cloud Run job, triggered by Cloud Scheduler",
-          "body": "Freshness check → alert on dropped accounts → ECB rates → dbt build → dbt test → Telegram summary. Stops at the first failure."
+          "id": "section-client-link",
+          "type": "link",
+          "label": "Open it live",
+          "href": "https://cpap-reporting.idconsult.bg/",
+          "caption": "Opens the live client dashboard (Google sign-in)"
         }
-      ],
-      "revealSteps": [
-        {
-          "caption": "The orchestrator",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "arch-orchestrator"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "demo-cost",
-      "type": "ai-demo",
-      "background": "focus",
-      "title": "Demo: BigQuery costs from $449 to $15",
-      "body": "How the AI agent finds where the money goes, measures it, and proves nothing is lost.",
-      "transcript": "data/transcripts/gads-cost-optimization.json"
-    },
-    {
-      "id": "gads-impact",
-      "type": "impact",
-      "background": "focus",
-      "title": "Result",
-      "body": "Measured in billed bytes from INFORMATION_SCHEMA.JOBS, not estimated.",
-      "metrics": [
-        {
-          "value": "$449 → $15",
-          "label": "monthly build cost"
-        },
-        {
-          "value": "−97%",
-          "label": "GB processed per day"
-        },
-        {
-          "value": "0",
-          "label": "account/date pairs lost in the A/B check"
-        },
-        {
-          "value": "13 days",
-          "label": "hidden gap in ECB rates, found by a new test"
-        }
-      ],
-      "points": [
-        "The optimisation surfaced an old bug. A new coverage test showed the ECB feed had stopped for 13 days, leaving USD/GBP accounts with an empty cost_eur.",
-        "Rejected ideas are also written down in the repo, with the reason."
-      ]
-    },
-    {
-      "id": "section-client",
-      "type": "text",
-      "background": "calm",
-      "title": "Project 2: Client from the healthcare industry",
-      "paragraphs": [
-        "Building on top: client reporting on the exporter, in two days."
       ]
     },
     {
@@ -2636,293 +2532,6 @@
       ]
     },
     {
-      "id": "client-timeline",
-      "type": "compose",
-      "background": "dense",
-      "layout": "stack",
-      "title": "Two days, 19 commits",
-      "blocks": [
-        {
-          "id": "client-tl-title",
-          "type": "heading",
-          "text": "Two days, 19 commits"
-        },
-        {
-          "id": "client-tl",
-          "type": "timeline",
-          "items": [
-            {
-              "label": "Day 1 · 11:50",
-              "title": "Discovery",
-              "body": "Sources checked, gaps listed, 8 questions for me before any code."
-            },
-            {
-              "label": "12:43",
-              "title": "Shopify pipeline",
-              "body": "4,894 orders, daily refresh, 72-hour overlap."
-            },
-            {
-              "label": "13:38",
-              "title": "Dashboard",
-              "body": "Cloud Run, IAP, custom domain and spreadsheet history."
-            },
-            {
-              "label": "Day 2 · 09:15",
-              "title": "MCP supplement",
-              "body": "Countries for Performance Max via the Google Ads MCP."
-            },
-            {
-              "label": "10:06",
-              "title": "Contracts",
-              "body": "The final legacy export becomes canonical and is recorded in CONTRACTS.md."
-            }
-          ]
-        },
-        {
-          "id": "client-tl-note",
-          "type": "callout",
-          "reveal": "collapse",
-          "label": "Key point",
-          "title": "The first commit is a document, not code",
-          "body": "The discovery report lists what was checked, what wasn't, and which decisions belong to a human."
-        }
-      ],
-      "revealSteps": [
-        {
-          "caption": "The first commit",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "client-tl-note"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "demo-client",
-      "type": "ai-demo",
-      "background": "focus",
-      "title": "Demo: when the numbers don't match",
-      "body": "Discovery, decisions, then a finding: the shared export has no countries for Performance Max.",
-      "transcript": "data/transcripts/client-reporting.json"
-    },
-    {
-      "id": "data-map",
-      "type": "tool-map",
-      "background": "focus",
-      "title": "Exports, APIs and AI connectors",
-      "body": "Each source comes in through the most stable channel available. Everything meets in BigQuery.",
-      "center": {
-        "label": "Warehouse",
-        "title": "BigQuery",
-        "body": "raw → core → mart, with provenance on every row"
-      },
-      "nodes": [
-        {
-          "label": "Data export",
-          "title": "Google Ads DTS",
-          "body": "Daily export of all accounts. Cheap and stable."
-        },
-        {
-          "label": "Data export",
-          "title": "GA4 → BigQuery",
-          "body": "Row-level events, no API limits."
-        },
-        {
-          "label": "API",
-          "title": "Shopify GraphQL",
-          "body": "Orders, refunds, country. The token is renewed every day."
-        },
-        {
-          "label": "MCP",
-          "title": "Google Ads MCP",
-          "body": "Fills the gap the export can't cover (PMax by country)."
-        },
-        {
-          "label": "File",
-          "title": "Legacy CSV / Sheets",
-          "body": "One-off import with SHA-256 and row numbers."
-        },
-        {
-          "label": "API",
-          "title": "ECB rates",
-          "body": "Daily rates, carried forward up to 30 days during outages."
-        }
-      ]
-    },
-    {
-      "id": "exports-vs-mcp",
-      "type": "compose",
-      "background": "dense",
-      "layout": "stack",
-      "title": "When exports, when MCP",
-      "blocks": [
-        {
-          "id": "evm-title",
-          "type": "heading",
-          "text": "Exports are the foundation, MCP is the instrument"
-        },
-        {
-          "id": "evm-cards",
-          "type": "cards",
-          "columns": 3,
-          "cards": [
-            {
-              "label": "Data export",
-              "title": "For volume and history",
-              "body": "Every day, every account, no human in the loop. The base of every report.",
-              "id": "evm-cards-1",
-              "reveal": "collapse"
-            },
-            {
-              "label": "AI connector (MCP)",
-              "title": "For exploration and gaps",
-              "body": "The agent queries the live API, compares and proves. That's how we found 291 days of cost mismatch.",
-              "id": "evm-cards-2",
-              "reveal": "collapse"
-            },
-            {
-              "label": "MCP in production",
-              "title": "Only under contract",
-              "body": "Fixed account, row cap, reconciliation to the cent, and temporary status until the export is fixed.",
-              "id": "evm-cards-3",
-              "reveal": "collapse"
-            }
-          ]
-        },
-        {
-          "id": "evm-callout",
-          "type": "callout",
-          "reveal": "collapse",
-          "label": "Rule",
-          "title": "A connector doesn't replace the warehouse",
-          "body": "MCP responses are saved as artifacts with provenance and loaded through the same checks as any other source."
-        }
-      ],
-      "revealSteps": [
-        {
-          "caption": "evm-cards-1",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "evm-cards-1"
-            }
-          ]
-        },
-        {
-          "caption": "evm-cards-2",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "evm-cards-2"
-            }
-          ]
-        },
-        {
-          "caption": "evm-cards-3",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "evm-cards-3"
-            }
-          ]
-        },
-        {
-          "caption": "evm-callout",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "evm-callout"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "artifacts",
-      "type": "artifact-gallery",
-      "background": "dense",
-      "title": "Artifacts in the repo",
-      "body": "What stays after the chat. Shortened, anonymised excerpts from the real files.",
-      "artifacts": [
-        {
-          "title": "AGENTS.md",
-          "type": "Markdown",
-          "path": "assets/attachments/client-agents.md",
-          "body": "The rules the agent follows on every task.",
-          "meta": "Project memory",
-          "id": "art-1",
-          "reveal": "collapse"
-        },
-        {
-          "title": "Discovery report",
-          "type": "Markdown",
-          "path": "assets/attachments/client-discovery-excerpt.md",
-          "body": "Gaps, risks and questions for a human.",
-          "meta": "Before the code",
-          "id": "art-2",
-          "reveal": "collapse"
-        },
-        {
-          "title": "Ads cost reconciliation",
-          "type": "Markdown",
-          "path": "assets/attachments/client-mcp-reconciliation.md",
-          "body": "Why DTS and the API report different cost for the same campaign.",
-          "meta": "Evidence",
-          "id": "art-3",
-          "reveal": "collapse"
-        },
-        {
-          "title": "Cost optimisation",
-          "type": "Markdown",
-          "path": "assets/attachments/gads-cost-optimizations.md",
-          "body": "4 changes, measured in GB and dollars.",
-          "meta": "Exporter",
-          "id": "art-4",
-          "reveal": "collapse"
-        }
-      ],
-      "revealSteps": [
-        {
-          "caption": "art-1",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "art-1"
-            }
-          ]
-        },
-        {
-          "caption": "art-2",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "art-2"
-            }
-          ]
-        },
-        {
-          "caption": "art-3",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "art-3"
-            }
-          ]
-        },
-        {
-          "caption": "art-4",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "art-4"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "verification",
       "type": "verification",
       "background": "calm",
@@ -2947,238 +2556,6 @@
           "Whether to trade a safety stage for a 50% lower bill"
         ]
       }
-    },
-    {
-      "id": "findings",
-      "type": "compose",
-      "background": "dense",
-      "layout": "stack",
-      "title": "Findings",
-      "blocks": [
-        {
-          "id": "findings-title",
-          "type": "heading",
-          "text": "Six things I learned"
-        },
-        {
-          "id": "find",
-          "type": "cards",
-          "columns": 3,
-          "cards": [
-            {
-              "number": "01",
-              "title": "Missing is not zero",
-              "body": "An empty day in the data is a gap to investigate, not zero spend.",
-              "id": "find-1",
-              "reveal": "collapse"
-            },
-            {
-              "number": "02",
-              "title": "IDs, not names",
-              "body": "Campaigns get renamed. The key is account + campaign ID; the name is just a label.",
-              "id": "find-2",
-              "reveal": "collapse"
-            },
-            {
-              "number": "03",
-              "title": "Contracts are memory",
-              "body": "A decision that isn't written down will be \"fixed\" by the next agent.",
-              "id": "find-3",
-              "reveal": "collapse"
-            },
-            {
-              "number": "04",
-              "title": "Measure in bytes",
-              "body": "One view, joined by 10 marts, was 70% of the bill.",
-              "id": "find-4",
-              "reveal": "collapse"
-            },
-            {
-              "number": "05",
-              "title": "Check before publishing",
-              "body": "If a run fails, the client sees the last good data, not broken data.",
-              "id": "find-5",
-              "reveal": "collapse"
-            },
-            {
-              "number": "06",
-              "title": "References are read-only",
-              "body": "A new project copies patterns and never touches working systems.",
-              "id": "find-6",
-              "reveal": "collapse"
-            }
-          ]
-        }
-      ],
-      "revealSteps": [
-        {
-          "caption": "find-1",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "find-1"
-            }
-          ]
-        },
-        {
-          "caption": "find-2",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "find-2"
-            }
-          ]
-        },
-        {
-          "caption": "find-3",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "find-3"
-            }
-          ]
-        },
-        {
-          "caption": "find-4",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "find-4"
-            }
-          ]
-        },
-        {
-          "caption": "find-5",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "find-5"
-            }
-          ]
-        },
-        {
-          "caption": "find-6",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "find-6"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "section-framework",
-      "type": "text",
-      "background": "calm",
-      "title": "Framework",
-      "paragraphs": [
-        "How projects become reusable solutions without losing each business's specifics."
-      ]
-    },
-    {
-      "id": "framework",
-      "type": "compose",
-      "background": "dense",
-      "layout": "stack",
-      "title": "Four layers",
-      "blocks": [
-        {
-          "id": "fw-title",
-          "type": "heading",
-          "text": "Four layers"
-        },
-        {
-          "id": "fw",
-          "type": "cards",
-          "columns": 4,
-          "cards": [
-            {
-              "label": "Knowledge",
-              "title": "What we know",
-              "body": "AGENTS.md, CONTRACTS.md, discovery, recorded decisions and rejected ideas. The agent reads them on every task.",
-              "id": "fw-1",
-              "reveal": "collapse"
-            },
-            {
-              "label": "Tools",
-              "title": "What we work with",
-              "body": "Exporters, dbt models, the FX pipeline, MCP clients, deploy scripts. One repo, many clients.",
-              "id": "fw-2",
-              "reveal": "collapse"
-            },
-            {
-              "label": "Business cases",
-              "title": "What we solve",
-              "body": "A separate repo for each client case. References are read, not blindly copied.",
-              "id": "fw-3",
-              "reveal": "collapse"
-            },
-            {
-              "label": "Specifics",
-              "title": "What's different",
-              "body": "Config tables, revenue definition, migration boundary, access list. Decided with the client.",
-              "id": "fw-4",
-              "reveal": "collapse"
-            }
-          ]
-        },
-        {
-          "id": "fw-callout",
-          "type": "callout",
-          "reveal": "collapse",
-          "label": "The effect",
-          "title": "Each new client costs less than the last",
-          "body": "The exporter took months to build. The healthcare client project, built on top of it, took two days."
-        }
-      ],
-      "revealSteps": [
-        {
-          "caption": "fw-1",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "fw-1"
-            }
-          ]
-        },
-        {
-          "caption": "fw-2",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "fw-2"
-            }
-          ]
-        },
-        {
-          "caption": "fw-3",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "fw-3"
-            }
-          ]
-        },
-        {
-          "caption": "fw-4",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "fw-4"
-            }
-          ]
-        },
-        {
-          "caption": "fw-callout",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "fw-callout"
-            }
-          ]
-        }
-      ]
     },
     {
       "id": "playbook",
@@ -3276,47 +2653,6 @@
             {
               "type": "showBlock",
               "target": "pb-6"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "final",
-      "type": "compose",
-      "background": "final",
-      "layout": "stack",
-      "title": "Start with one repo",
-      "blocks": [
-        {
-          "id": "final-title",
-          "type": "heading",
-          "text": "Start with one repo"
-        },
-        {
-          "id": "final-text",
-          "type": "text",
-          "paragraphs": [
-            "Pick one report you build by hand every month.",
-            "Create a repo with an AGENTS.md, and let the agent investigate first and build second."
-          ]
-        },
-        {
-          "id": "final-callout",
-          "type": "callout",
-          "reveal": "collapse",
-          "label": "This week",
-          "title": "One source, one test, one scheduled job.",
-          "body": "Then the next client already has something to build on."
-        }
-      ],
-      "revealSteps": [
-        {
-          "caption": "final-callout",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "final-callout"
             }
           ]
         }

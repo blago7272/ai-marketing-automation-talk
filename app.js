@@ -790,6 +790,14 @@ class AIPresentationFramework {
         </div>`;
     }
 
+    if (type === "link") {
+      return `
+        <div ${attrs}>
+          <a class="block-link-button" href="${escapeAttribute(block.href || "#")}" target="_blank" rel="noreferrer">${escapeHTML(block.label || "Open")} <span aria-hidden="true">↗</span></a>
+          ${block.caption ? `<span class="block-link-caption">${escapeHTML(block.caption)}</span>` : ""}
+        </div>`;
+    }
+
     if (type === "process") {
       const steps = block.steps || [];
       const n = steps.length || 1;
