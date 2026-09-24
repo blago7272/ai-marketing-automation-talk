@@ -528,6 +528,7 @@ class AIPresentationFramework {
         <section class="slide slide-title" data-slide-id="${id}" data-bg="${bg}" data-title="${escapeAttribute(slide.title)}">
           <div class="title-grid">
             <div class="title-copy">
+              ${slide.showVersion && this.presentation.meta?.version ? `<span class="version-badge">Version ${escapeHTML(this.presentation.meta.version)}</span>` : ""}
               <h1>${formatDisplayText(slide.title)}</h1>
               <p>${escapeHTML(slide.body || "")}</p>
             </div>

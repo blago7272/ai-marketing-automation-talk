@@ -4975,3 +4975,20 @@ body[data-contrast-theme="light"] .attachment-body pre {
 /* Full-opacity compact flow (e.g. a daily run sequence) */
 .block-process.is-compact.is-flow .process-node { opacity: 1; }
 .block-grid.is-stepgrid .block-image img[src*="telegram"] { max-height: 60vh; }
+
+/* Version badge on the title slide */
+.version-badge {
+  justify-self: start;
+  width: max-content;
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, rgba(6, 22, 27, 0.6));
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 760;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

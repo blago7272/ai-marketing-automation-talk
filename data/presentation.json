@@ -3,7 +3,7 @@
     "title": "Building Smarter and Scalable Marketing Automation with AI",
     "subtitle": "Connecting marketing data, analytics and custom software",
     "speaker": "Blagovest Iordanov",
-    "version": "1.1.0"
+    "version": "1.0"
   },
   "settings": {
     "desktopMinWidth": 900,
@@ -15,6 +15,7 @@
       "id": "welcome",
       "type": "title",
       "background": "hero",
+      "showVersion": true,
       "title": "Smarter,\nScalable\nMarketing\nAutomation\nwith AI",
       "body": "How to connect marketing data, analytics and custom software into automation that grows with the business, shown through two real projects.",
       "workflow": [
@@ -1156,14 +1157,6 @@
       ]
     },
     {
-      "id": "ex-2",
-      "type": "ai-demo",
-      "background": "focus",
-      "title": "In practice: discovery",
-      "body": "From the healthcare client's repo: the agent's questions, the answers, and the rules they became.",
-      "transcript": "data/transcripts/discovery.json"
-    },
-    {
       "id": "step-3",
       "type": "compose",
       "background": "dense",
@@ -1269,118 +1262,6 @@
             {
               "type": "showBlock",
               "target": "step-3-notes"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "ex-3",
-      "type": "compose",
-      "background": "dense",
-      "layout": "stack",
-      "title": "In practice: Step 3",
-      "blocks": [
-        {
-          "id": "ex-3-stepper",
-          "type": "process",
-          "variant": "compact",
-          "compact": true,
-          "active": 3,
-          "steps": [
-            {
-              "title": "Raw data, a step away",
-              "goal": false
-            },
-            {
-              "title": "Context discovery",
-              "goal": false
-            },
-            {
-              "title": "Adapt templates",
-              "goal": false
-            },
-            {
-              "title": "Maintainable pipelines",
-              "goal": false
-            },
-            {
-              "title": "Client feedback loop",
-              "goal": false
-            },
-            {
-              "title": "Full automation",
-              "goal": true
-            }
-          ]
-        },
-        {
-          "id": "ex-3-title",
-          "type": "heading",
-          "variant": "step",
-          "text": "In practice: shared template + client rules = the client's report"
-        },
-        {
-          "id": "ex-3-lead",
-          "type": "text",
-          "paragraphs": [
-            "One view from the healthcare client's dashboard, \"Google Ads by country\", and where each part came from."
-          ]
-        },
-        {
-          "id": "ex-3-cards",
-          "type": "cards",
-          "columns": 3,
-          "cards": [
-            {
-              "id": "ex-3-tpl",
-              "pros": [
-                "Shared Ads reporting tables from the exporter",
-                "The report hub and page layout from an earlier client",
-                "Standard metrics: impressions, clicks, cost, conversions, value"
-              ],
-              "prosLabel": "From the templates"
-            },
-            {
-              "id": "ex-3-rules",
-              "reveal": "collapse",
-              "todo": [
-                "Drill-down: country → campaign → month",
-                "ROAS = summed value ÷ summed cost; unavailable when cost is zero",
-                "Projected month shown only when the month is complete from day 1 and reconciled",
-                "Campaigns grouped by account + campaign ID, even when names match"
-              ],
-              "todoLabel": "From the client's semantic library"
-            },
-            {
-              "id": "ex-3-result",
-              "reveal": "collapse",
-              "notes": [
-                "Protected dashboard live on day 1, refined on day 2",
-                "Rules live in CONTRACTS.md, read by the agent before every change",
-                "The next client starts from the same templates"
-              ],
-              "notesLabel": "The result"
-            }
-          ]
-        }
-      ],
-      "revealSteps": [
-        {
-          "caption": "Client rules",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "ex-3-rules"
-            }
-          ]
-        },
-        {
-          "caption": "The result",
-          "actions": [
-            {
-              "type": "showBlock",
-              "target": "ex-3-result"
             }
           ]
         }
