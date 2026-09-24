@@ -66,8 +66,8 @@
           "points": [
             "20+ years in business development",
             "15+ years in digital marketing",
-            "Co-founder of ID – Digital Consulting, a performance digital agency focused on data",
-            "Focused on building a deep understanding of each client's business",
+            "Co-founder of ID – Digital Consulting, a performance digital agency focused on data-driven decisions in advertising",
+            "Translating each client's business goals into measurable marketing systems",
             "This past year: AI agents that write and maintain the code for me"
           ]
         }
@@ -255,7 +255,7 @@
               ],
               "cons": [
                 "Not repeatable or scheduled",
-                "More on the next slide"
+                "More in a moment"
               ],
               "id": "ladder-5",
               "reveal": "collapse"
@@ -306,6 +306,117 @@
             {
               "type": "showBlock",
               "target": "ladder-5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai-promise",
+      "type": "compose",
+      "background": "focus",
+      "layout": "stack",
+      "title": "The AI promise",
+      "blocks": [
+        {
+          "id": "promise-title",
+          "type": "heading",
+          "text": "AI is made for work like ours"
+        },
+        {
+          "id": "promise-lead",
+          "type": "text",
+          "paragraphs": [
+            "AI delivers the most where tasks repeat and data is plentiful. Advertising and analytics platforms are a textbook case."
+          ]
+        },
+        {
+          "id": "promise",
+          "type": "cards",
+          "columns": 4,
+          "cards": [
+            {
+              "label": "Repeatable tasks",
+              "title": "The same work, every week",
+              "body": "Reports, budget pacing, search term audits, anomaly checks. The same steps for every client.",
+              "id": "promise-1",
+              "reveal": "collapse"
+            },
+            {
+              "label": "Plenty of data",
+              "title": "Millions of rows a day",
+              "body": "Every impression, click and conversion is logged, with years of history behind it.",
+              "id": "promise-2",
+              "reveal": "collapse"
+            },
+            {
+              "label": "Structured data",
+              "title": "Stable schemas",
+              "body": "Well-documented APIs and exports, the same dimensions and metrics across accounts.",
+              "id": "promise-3",
+              "reveal": "collapse"
+            },
+            {
+              "label": "Fast feedback",
+              "title": "Everything is measured",
+              "body": "Each change shows up in cost, conversions and ROAS, so results can be checked.",
+              "id": "promise-4",
+              "reveal": "collapse"
+            }
+          ]
+        },
+        {
+          "id": "promise-tools",
+          "type": "callout",
+          "reveal": "collapse",
+          "label": "The tools are here",
+          "title": "Official MCP servers for Google Ads and GA4, AI agents that write code, AI built into the platforms",
+          "body": "The promise is real. The question is how to use it so it scales, which is where plain prompting runs out."
+        }
+      ],
+      "revealSteps": [
+        {
+          "caption": "Repeatable tasks",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "promise-1"
+            }
+          ]
+        },
+        {
+          "caption": "Plenty of data",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "promise-2"
+            }
+          ]
+        },
+        {
+          "caption": "Structured data",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "promise-3"
+            }
+          ]
+        },
+        {
+          "caption": "Fast feedback",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "promise-4"
+            }
+          ]
+        },
+        {
+          "caption": "The tools are here",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "promise-tools"
             }
           ]
         }
