@@ -55,7 +55,7 @@
         "src": "assets/media/profile-photo.jpg",
         "alt": "Portrait of Blagovest Iordanov"
       },
-      "role": "Co-founder of ID Consult. I focus on data strategy, analytics infrastructure and technical implementation.",
+      "role": "Data strategy, analytics infrastructure and technical implementation.",
       "linkedin": {
         "label": "idconsult.bg",
         "href": "https://idconsult.bg"
@@ -64,9 +64,10 @@
         {
           "title": "Background",
           "points": [
-            "20+ years in business development, 15+ in digital marketing",
-            "Co-founder of ID Consult, working with clients in Bulgaria, the EU and the US",
-            "Data strategy, tracking, GA4 and reporting pipelines",
+            "20+ years in business development",
+            "15+ years in digital marketing",
+            "Co-founder of ID – Digital Consulting, a performance digital agency focused on data",
+            "Focused on building a deep understanding of each client's business",
             "This past year: AI agents that write and maintain the code for me"
           ]
         }
@@ -82,7 +83,7 @@
         {
           "id": "problem-title",
           "type": "heading",
-          "text": "Every client is different. Their data isn't."
+          "text": "Every client is different. Their data isn't (mostly)."
         },
         {
           "id": "problem-cards",
@@ -92,19 +93,19 @@
             {
               "label": "The client",
               "title": "Specific every time",
-              "body": "Own goals, KPIs, currencies, markets and history.",
+              "body": "A unique business vision, markets and history, which produce a specific set of KPIs and goals.",
               "id": "problem-cards-1",
               "reveal": "collapse"
             },
             {
               "label": "The data",
-              "title": "The same structure everywhere",
-              "body": "Accounts → campaigns → ad groups → keywords. The same dimensions and metrics, the same measurement schema, on every ad and analytics platform.",
+              "title": "Similar underneath",
+              "body": "Platforms differ, but the raw data is strikingly similar: the same shape, the same dimensions and metrics, the same business logic. Businesses in the same industry end up with an almost identical semantic layer.",
               "id": "problem-cards-2",
               "reveal": "collapse"
             },
             {
-              "label": "The consequence",
+              "label": "The idea",
               "title": "Build the structure once",
               "body": "The differences are small and belong in configuration. The shared structure can be modelled once and reused.",
               "id": "problem-cards-3",
@@ -116,8 +117,8 @@
           "id": "problem-callout",
           "type": "callout",
           "reveal": "collapse",
-          "label": "The question",
-          "title": "How do we extract, transform, load and analyse this data today?",
+          "label": "The challenge",
+          "title": "How have ETL and analysis worked in digital marketing so far?",
           "body": "And does that way scale with the next client?"
         }
       ],
@@ -132,7 +133,7 @@
           ]
         },
         {
-          "caption": "The data shape is shared",
+          "caption": "The data is similar underneath",
           "actions": [
             {
               "type": "showBlock",
@@ -141,7 +142,7 @@
           ]
         },
         {
-          "caption": "So build it once",
+          "caption": "The idea: build it once",
           "actions": [
             {
               "type": "showBlock",
@@ -150,7 +151,7 @@
           ]
         },
         {
-          "caption": "The question",
+          "caption": "The challenge",
           "actions": [
             {
               "type": "showBlock",
@@ -165,18 +166,18 @@
       "type": "compose",
       "background": "dense",
       "layout": "stack",
-      "title": "How we get the data today",
+      "title": "ETL and analysis: current state",
       "blocks": [
         {
           "id": "ladder-title",
           "type": "heading",
-          "text": "How we get the data today"
+          "text": "ETL and analysis: current state"
         },
         {
           "id": "ladder-lead",
           "type": "text",
           "paragraphs": [
-            "From the most manual to the most flexible. Each step solves something, and each one breaks somewhere."
+            "How digital marketing gets and analyses its data today, from the most manual to the most flexible. Each step solves something, and each one breaks somewhere."
           ]
         },
         {
@@ -187,35 +188,75 @@
             {
               "label": "01 · Interface",
               "title": "Google Ads UI",
-              "body": "Good for: quick checks, still the most common method. Breaks: slow, effort just to set up a view, one client at a time, nothing programmatic.",
+              "pros": [
+                "Quick spot checks",
+                "Still the most common method"
+              ],
+              "cons": [
+                "Slow; effort just to set up a view",
+                "One client at a time",
+                "No programmatic extraction"
+              ],
               "id": "ladder-1",
               "reveal": "collapse"
             },
             {
               "label": "02 · Exports",
               "title": "Exports & dashboards",
-              "body": "Good for: regular reports in familiar tools. Breaks: extra processing, fixed data shape, only partly automatable.",
+              "pros": [
+                "Regular reports in familiar tools",
+                "Easy to share"
+              ],
+              "cons": [
+                "Needs extra processing",
+                "Fixed data shape",
+                "Only partly automatable"
+              ],
               "id": "ladder-2",
               "reveal": "collapse"
             },
             {
               "label": "03 · Spreadsheets",
               "title": "Sheets via API / add-ons",
-              "body": "Good for: the first real automation. Breaks: hard to scale, locked to the current data shape, hard to change.",
+              "pros": [
+                "First real programmatic automation",
+                "Flexible formulas"
+              ],
+              "cons": [
+                "Hard to scale across clients",
+                "Locked to the current data shape",
+                "Changes are painful"
+              ],
               "id": "ladder-3",
               "reveal": "collapse"
             },
             {
               "label": "04 · Scripts",
               "title": "Scripts & workflow tools",
-              "body": "Good for: scheduled tasks. Breaks: logic scattered across many scripts and scenarios, no tests, no shared model.",
+              "pros": [
+                "Scheduled, hands-off tasks",
+                "Quick to start"
+              ],
+              "cons": [
+                "Logic scattered across scripts",
+                "No tests or version history",
+                "No shared model"
+              ],
               "id": "ladder-4",
               "reveal": "collapse"
             },
             {
               "label": "05 · AI",
               "title": "AI prompts + MCP",
-              "body": "Good for: exploration, ad-hoc questions, live data in plain language. Breaks: see the next slide.",
+              "pros": [
+                "Plain-language questions",
+                "Live data, no pipeline",
+                "Great for exploration"
+              ],
+              "cons": [
+                "Not repeatable or scheduled",
+                "More on the next slide"
+              ],
               "id": "ladder-5",
               "reveal": "collapse"
             }

@@ -850,7 +850,18 @@ class AIPresentationFramework {
         ${card.label || card.number ? `<span>${escapeHTML(card.label || card.number)}</span>` : ""}
         <strong>${escapeHTML(card.title || "")}</strong>
         ${card.body ? `<p>${escapeHTML(card.body)}</p>` : ""}
+        ${this.renderProsCons(card)}
       </article>`;
+  }
+
+  renderProsCons(card = {}) {
+    const group = (items, kind, label) => Array.isArray(items) && items.length
+      ? `<div class="card-procon is-${kind}">
+          <em>${escapeHTML(label)}</em>
+          <ul>${items.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
+        </div>`
+      : "";
+    return group(card.pros, "pro", card.prosLabel || "Good for") + group(card.cons, "con", card.consLabel || "Breaks");
   }
 
   renderArtifactCard(artifact = {}, index = 0) {
