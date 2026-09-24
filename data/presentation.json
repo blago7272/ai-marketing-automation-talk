@@ -105,7 +105,7 @@
               "reveal": "collapse"
             },
             {
-              "label": "The idea",
+              "label": "The concept",
               "title": "Build the structure once",
               "body": "The differences are small and belong in configuration. The shared structure can be modelled once and reused.",
               "id": "problem-cards-3",
@@ -118,8 +118,8 @@
           "type": "callout",
           "reveal": "collapse",
           "label": "The challenge",
-          "title": "How have ETL and analysis worked in digital marketing so far?",
-          "body": "And does that way scale with the next client?"
+          "title": "The way digital marketing does ETL and analysis is obsolete",
+          "body": "Current tools and habits don't scale easily. Enter AI."
         }
       ],
       "revealSteps": [
@@ -142,7 +142,7 @@
           ]
         },
         {
-          "caption": "The idea: build it once",
+          "caption": "The concept: build it once",
           "actions": [
             {
               "type": "showBlock",
@@ -166,18 +166,18 @@
       "type": "compose",
       "background": "dense",
       "layout": "stack",
-      "title": "ETL and analysis: current state",
+      "title": "ETL and analysis: Current State",
       "blocks": [
         {
           "id": "ladder-title",
           "type": "heading",
-          "text": "ETL and analysis: current state"
+          "text": "ETL and analysis: Current State"
         },
         {
           "id": "ladder-lead",
           "type": "text",
           "paragraphs": [
-            "How digital marketing gets and analyses its data today, from the most manual to the most flexible. Each step solves something, and each one breaks somewhere."
+            "How does digital marketing get and analyse its data today? Each approach solves something, and each one breaks somewhere."
           ]
         },
         {
@@ -190,10 +190,10 @@
               "title": "Google Ads UI",
               "pros": [
                 "Quick spot checks",
-                "Still the most common method"
+                "Flat learning curve, at least at the start"
               ],
               "cons": [
-                "Slow; effort just to set up a view",
+                "Painful UI; effort just to set up a view",
                 "One client at a time",
                 "No programmatic extraction"
               ],
@@ -204,7 +204,8 @@
               "label": "02 · Exports",
               "title": "Exports & dashboards",
               "pros": [
-                "Regular reports in familiar tools",
+                "Reliable source, hard to get wrong",
+                "Flat learning curve",
                 "Easy to share"
               ],
               "cons": [
@@ -220,7 +221,7 @@
               "title": "Sheets via API / add-ons",
               "pros": [
                 "First real programmatic automation",
-                "Flexible formulas"
+                "Flexible formulas + JavaScript (Apps Script)"
               ],
               "cons": [
                 "Hard to scale across clients",
@@ -231,16 +232,17 @@
               "reveal": "collapse"
             },
             {
-              "label": "04 · Scripts",
-              "title": "Scripts & workflow tools",
+              "label": "04 · Connectors",
+              "title": "Third-party data connectors",
               "pros": [
-                "Scheduled, hands-off tasks",
+                "Rich functionality",
+                "Manageable learning curve",
                 "Quick to start"
               ],
               "cons": [
-                "Logic scattered across scripts",
-                "No tests or version history",
-                "No shared model"
+                "Costly, priced per source or account",
+                "A black box",
+                "Preset: can't match every need"
               ],
               "id": "ladder-4",
               "reveal": "collapse"
@@ -292,7 +294,7 @@
           ]
         },
         {
-          "caption": "Scripts and workflow tools",
+          "caption": "Third-party connectors",
           "actions": [
             {
               "type": "showBlock",
@@ -316,67 +318,74 @@
       "type": "compose",
       "background": "focus",
       "layout": "stack",
-      "title": "The AI promise",
+      "title": "AI builds the tools",
       "blocks": [
         {
           "id": "promise-title",
           "type": "heading",
-          "text": "AI is made for work like ours"
+          "text": "AI can build the tools we were missing"
         },
         {
           "id": "promise-lead",
           "type": "text",
           "paragraphs": [
-            "AI delivers the most where tasks repeat and data is plentiful. Advertising and analytics platforms are a textbook case."
+            "Every limit on the previous slide is a tooling problem. AI agents can now write, run and maintain that tooling, so fixing it no longer needs a data engineering team."
           ]
         },
         {
           "id": "promise",
           "type": "cards",
-          "columns": 4,
+          "columns": 5,
           "cards": [
             {
-              "label": "Repeatable tasks",
-              "title": "The same work, every week",
-              "body": "Reports, budget pacing, search term audits, anomaly checks. The same steps for every client.",
+              "label": "vs. one client at a time",
+              "title": "Programmatic data access",
+              "body": "Every platform through its API or native export, for every client, on a schedule.",
               "id": "promise-1",
               "reveal": "collapse"
             },
             {
-              "label": "Plenty of data",
-              "title": "Millions of rows a day",
-              "body": "Every impression, click and conversion is logged, with years of history behind it.",
+              "label": "vs. fragile scripts",
+              "title": "Pipelines built and maintained",
+              "body": "The agent writes extraction, transformation and tests, and fixes them when an API changes.",
               "id": "promise-2",
               "reveal": "collapse"
             },
             {
-              "label": "Structured data",
-              "title": "Stable schemas",
-              "body": "Well-documented APIs and exports, the same dimensions and metrics across accounts.",
+              "label": "vs. costly connectors",
+              "title": "Lower cost",
+              "body": "Pay for cloud usage, not per-source licences. Our daily Ads build runs at about $15 a month.",
               "id": "promise-3",
               "reveal": "collapse"
             },
             {
-              "label": "Fast feedback",
-              "title": "Everything is measured",
-              "body": "Each change shows up in cost, conversions and ROAS, so results can be checked.",
+              "label": "vs. steep learning",
+              "title": "Manageable learning curve",
+              "body": "You describe the goal and the rules; the agent writes the code. You need to know the data, not every line.",
               "id": "promise-4",
+              "reveal": "collapse"
+            },
+            {
+              "label": "vs. scattered data",
+              "title": "Ready for AI analysis",
+              "body": "Clean, documented, tested data in one warehouse is what AI needs to give reliable answers.",
+              "id": "promise-5",
               "reveal": "collapse"
             }
           ]
         },
         {
-          "id": "promise-tools",
+          "id": "promise-shift",
           "type": "callout",
           "reveal": "collapse",
-          "label": "The tools are here",
-          "title": "Official MCP servers for Google Ads and GA4, AI agents that write code, AI built into the platforms",
-          "body": "The promise is real. The question is how to use it so it scales, which is where plain prompting runs out."
+          "label": "The shift",
+          "title": "From buying tools to building your own",
+          "body": "Tailored to your clients, owned by you, and better every time you use them."
         }
       ],
       "revealSteps": [
         {
-          "caption": "Repeatable tasks",
+          "caption": "Programmatic data access",
           "actions": [
             {
               "type": "showBlock",
@@ -385,7 +394,7 @@
           ]
         },
         {
-          "caption": "Plenty of data",
+          "caption": "Pipelines built and maintained",
           "actions": [
             {
               "type": "showBlock",
@@ -394,7 +403,7 @@
           ]
         },
         {
-          "caption": "Structured data",
+          "caption": "Lower cost",
           "actions": [
             {
               "type": "showBlock",
@@ -403,7 +412,7 @@
           ]
         },
         {
-          "caption": "Fast feedback",
+          "caption": "Manageable learning curve",
           "actions": [
             {
               "type": "showBlock",
@@ -412,11 +421,20 @@
           ]
         },
         {
-          "caption": "The tools are here",
+          "caption": "Ready for AI analysis",
           "actions": [
             {
               "type": "showBlock",
-              "target": "promise-tools"
+              "target": "promise-5"
+            }
+          ]
+        },
+        {
+          "caption": "The shift",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "promise-shift"
             }
           ]
         }
@@ -435,9 +453,16 @@
           "text": "Why MCP alone isn't the answer"
         },
         {
+          "id": "mcp-lead",
+          "type": "text",
+          "paragraphs": [
+            "Given raw access, the model improvises its own analytical approach every time. The quality of the answer depends on the instructions and guardrails we give it."
+          ]
+        },
+        {
           "id": "mcp-grid",
           "type": "grid",
-          "columns": 2,
+          "columns": 3,
           "blocks": [
             {
               "id": "mcp-good",
@@ -451,7 +476,7 @@
                   "text": "No pipeline needed, set up in minutes"
                 },
                 {
-                  "text": "Excellent for exploration and finding gaps: it's how we found 291 days of cost mismatch"
+                  "text": "Great for exploration and finding gaps: it's how we found 291 days of cost mismatch"
                 }
               ]
             },
@@ -465,16 +490,33 @@
                   "text": "Row caps: a capped result can look complete"
                 },
                 {
-                  "text": "Not repeatable: the same question can be computed differently, with no snapshot to reconcile against"
+                  "text": "Not repeatable: the same question, computed differently each time"
                 },
                 {
-                  "text": "No history or memory: nothing scheduled, nothing monitored"
+                  "text": "No history or memory: nothing scheduled or monitored"
                 },
                 {
-                  "text": "Easy to get subtly wrong: averaging rates, mixing currencies"
+                  "text": "Subtle errors: averaged rates, mixed currencies, gaps read as zero"
+                }
+              ]
+            },
+            {
+              "id": "mcp-needs",
+              "type": "list",
+              "reveal": "collapse",
+              "title": "What it needs: instructions and guardrails",
+              "items": [
+                {
+                  "text": "A semantic layer: which metrics, at which grain, how ratios are calculated"
                 },
                 {
-                  "text": "Cost and speed: every question re-pulls and re-processes the data"
+                  "text": "Written business rules: revenue, attribution, currencies, time zones"
+                },
+                {
+                  "text": "Checks before any number is shown: reconciliation, coverage, freshness"
+                },
+                {
+                  "text": "Instructions that persist: AGENTS.md, contracts, skills"
                 }
               ]
             }
@@ -486,7 +528,7 @@
           "reveal": "collapse",
           "label": "The difference",
           "title": "Use AI to build the pipeline, not to be the pipeline.",
-          "body": "The agent writes, tests and maintains the system. The system produces the numbers."
+          "body": "The agent writes, tests and maintains the system. The system produces the numbers, visualisations and analyses."
         }
       ],
       "revealSteps": [
@@ -496,6 +538,15 @@
             {
               "type": "showBlock",
               "target": "mcp-limits-list"
+            }
+          ]
+        },
+        {
+          "caption": "What it needs",
+          "actions": [
+            {
+              "type": "showBlock",
+              "target": "mcp-needs"
             }
           ]
         },
